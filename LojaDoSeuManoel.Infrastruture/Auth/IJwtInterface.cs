@@ -8,5 +8,6 @@ namespace LojaDoSeuManoel.Infrastruture.Auth
 {
     public interface IJwtInterface
     {
+        string GenerateToken(int UserId, string userType);
     }
 }
