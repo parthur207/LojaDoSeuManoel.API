@@ -1,5 +1,11 @@
 using LojaDoSeuManoel.Infrastruture.Auth;
+using LojaDoSeuManoel.Infrastruture.ExternalService;
+using LojaDoSeuManoel.Infrastruture.Persistense;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace LojaDoSeuManoel.API.Main
 {
@@ -11,14 +17,13 @@ namespace LojaDoSeuManoel.API.Main
 
             builder.Services.AddControllersWithViews();
 
-            //Configuração do Swagger
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "E-Commerce API",
+                    Title = "Loja do seu Manoel",
                     Version = "v1",
-                    Description = "API - teste técnico Rota",
+                    Description = "API criada para automatização do processo de dimensionamento de produtos (games) para alguma caixa conforme as dimensões dos produtos.",
                     Contact = new OpenApiContact
                     {
                         Name = "Paulo Andrade",
@@ -44,7 +49,7 @@ namespace LojaDoSeuManoel.API.Main
                 c.AddSecurityDefinition("Bearer", securityScheme);
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
+                {
                     {
                         new OpenApiSecurityScheme
                         {
@@ -56,20 +61,20 @@ namespace LojaDoSeuManoel.API.Main
                         },
                         new string[] {}
                     }
-            });
+                });
             });
 
             //banco de dados InMemory
-            builder.Services.AddDbContext<DbContextInMemory>(options =>
-                options.UseInMemoryDatabase("DbContextInMemory"));
+            builder.Services.AddDbContext<LojaDoSeuManoelDbContext>(options =>
+                options.UseInMemoryDatabase("LojaDoSeuManoelDbContext"));
 
             //Banco de dados SQL
             /*var cnn = builder.Configuration.GetConnectionString("DefaultConnection");
             Console.WriteLine($"Conexão: {cnn}");
 
-            builder.Services.AddDbContext<DbContextInMemory>(options => options.UseSqlServer(cnn));*/
+            builder.Services.AddDbContext<LojaDoSeuManoelDbContext>(options => options.UseSqlServer(cnn));*/
 
-
+            /*
             builder.Services.AddScoped<IAdminProductInterface, AdminProductService>();
             builder.Services.AddScoped<IAdminTransactionInterface, AdminTransactionService>();
             builder.Services.AddScoped<IAdminUserInterface, AdminUserService>();
@@ -81,10 +86,9 @@ namespace LojaDoSeuManoel.API.Main
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
-
+            */
 
             builder.Services.AddScoped<IJwtInterface, JwtService>();
-
 
             builder.Services.AddTransient<INotificationInterface, NotificationService>();
 
@@ -115,11 +119,9 @@ namespace LojaDoSeuManoel.API.Main
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "E-Commerce API v1");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "LojaDoSeuManoel API v1");
                 });
             }
-
-
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
