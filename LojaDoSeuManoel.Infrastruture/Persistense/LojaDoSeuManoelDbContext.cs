@@ -36,6 +36,28 @@ namespace LojaDoSeuManoel.Infrastruture.Persistense
                 x.HasKey(x => x.Id);//Chave primária
             });
 
+            modelBuilder.Entity<OrderEntity>(x =>
+            {
+                x.HasKey(x => x.Id);
+                x.HasOne(x => x.Costumer)
+                .WithMany(x => x.OrderList)
+                .HasForeignKey(x=>x.Id)
+                .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            modelBuilder.Entity<OrderProductGameEntity>(x =>
+            {
+                x.HasKey(x => x.Id);
+
+                x.HasOne(x => x.Order)
+                .WithMany(x => x.OrderList)
+                .HasForeignKey(x=>x.OrderId)
+
+                .HasForeignKey(x=>x.ProductGameId)
+                .OnDelete(DeleteBehavior.Restrict);
+            });
+
 
         }
 
