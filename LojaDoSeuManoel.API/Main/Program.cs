@@ -1,3 +1,4 @@
+using LojaDoSeuManoel.Infrastruture.Auth;
 using Microsoft.OpenApi.Models;
 
 namespace LojaDoSeuManoel.API.Main

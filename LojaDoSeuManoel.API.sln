@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35931.197 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaDoSeuManoel.WebAPI", "LojaDoSeuManoel.API\LojaDoSeuManoel.WebAPI.csproj", "{074233FD-A6C4-4E08-BC0E-6135319E77AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaDoSeuManoel.API", "LojaDoSeuManoel.API\LojaDoSeuManoel.API.csproj", "{074233FD-A6C4-4E08-BC0E-6135319E77AA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3CD5D061-D05F-41C9-AB65-CC6352E5093C} = {3CD5D061-D05F-41C9-AB65-CC6352E5093C}
 		{3FD5BA71-0E51-4E46-BE6D-AD8D32F95AA0} = {3FD5BA71-0E51-4E46-BE6D-AD8D32F95AA0}

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LojaDoSeuManoel.Infrastruture.Auth
 {
-    internal interface IJwtInterface
+    public interface IJwtInterface
     {
     }
 }
