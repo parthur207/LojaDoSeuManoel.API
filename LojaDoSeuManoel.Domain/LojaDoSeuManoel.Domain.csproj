@@ -9,9 +9,7 @@
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Enuns\" />
-    <Folder Include="Models\" />
     <Folder Include="Attributes\" />
-    <Folder Include="Roles\" />
   </ItemGroup>
 
 </Project>
