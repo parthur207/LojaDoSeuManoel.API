@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LojaDoSeuManoel.API.Controllers
+namespace LojaDoSeuManoel.API.Controllers.User
 {
     [Authorize]
     [ApiController]
