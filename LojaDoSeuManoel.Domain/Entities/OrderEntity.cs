@@ -9,15 +9,16 @@ namespace LojaDoSeuManoel.Domain.Entities
 {
     public class OrderEntity : BaseEntity
     {
-        public OrderEntity(List<ProductGameEntity> orderList)
+        public OrderEntity(Guid customerId, List<OrderProductGameEntity> orderList)
         {
+            CustomerId = customerId;
             OrderList = orderList;
             OrderStatus = OrderStatusEnum.Pending;
         }
 
-        public List<ProductGameEntity> OrderList { get; private set; }
+        public List<OrderProductGameEntity> OrderList { get; private set; }
         public OrderStatusEnum OrderStatus { get; private set; }
-        public int CustomerId { get; private set; }
+        public Guid CustomerId { get; private set; }
         public CustomerEntity Costumer { get; private set; }
         public decimal TotalValue { get; private set; }
 
@@ -30,11 +31,12 @@ namespace LojaDoSeuManoel.Domain.Entities
             }
             OrderStatus = NewStatus;
         }
+
         public void CalculateTotalValue()
         {
             TotalValue = OrderList
-            .Where(x => x. != null)
-            .Sum(x => (decimal)x.Quantity * (decimal)x.Product.Price);
+            .Where(x => x.ProductGame != null)
+            .Sum(x => (decimal)x.Quantity * (decimal)x.ProductGame.Price);
         }
     }
 }
