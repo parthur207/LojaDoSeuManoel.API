@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LojaDoSeuManoel.API.Controllers
 {
+    [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/order")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]

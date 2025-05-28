@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace LojaDoSeuManoel.Domain.Models
 {
-    internal class SimpleResponseModel
+    public class SimpleResponseModel
     {
+        public SimpleResponseModel(bool status, string message)
+        {
+            Status = status;
+            Message = message;
+        }
+
+        public bool Status { get; set; }
+        public string Message { get; set; }
     }
 }
