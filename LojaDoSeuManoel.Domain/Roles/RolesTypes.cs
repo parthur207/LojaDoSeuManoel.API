@@ -8,7 +8,7 @@ namespace LojaDoSeuManoel.Domain.Roles
 {
     public class RolesTypes
     {
-        public string User { get; set; } = "User";
-        public string Admin { get; set; } = "Admin";
+        public const string Customer = "Customer";
+        public const string Admin  = "Admin";
     }
 }

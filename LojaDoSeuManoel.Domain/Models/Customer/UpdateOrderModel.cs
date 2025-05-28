@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Application.DTOs
+namespace LojaDoSeuManoel.Domain.Models.Customer
 {
-    internal class OrderDTO
+    internal class UpdateOrderModel
     {
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Application.Mappers
+namespace LojaDoSeuManoel.Domain.Models.Customer
 {
-    public class ProductGameMapper
+    internal class CreateOrderModel
     {
     }
 }

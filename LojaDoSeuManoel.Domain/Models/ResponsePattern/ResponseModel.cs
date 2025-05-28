@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Domain.Models
+namespace LojaDoSeuManoel.Domain.Models.ResponsePattern
 {
     public class ResponseModel <T>
     {

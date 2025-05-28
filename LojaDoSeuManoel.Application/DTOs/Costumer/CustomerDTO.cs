@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Application.Mappers
+namespace LojaDoSeuManoel.Application.DTOs.Costumer
 {
-    internal class UserMapper
+    public sealed class CustomerDTO
     {
     }
 }

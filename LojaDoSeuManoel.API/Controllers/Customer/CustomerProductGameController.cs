@@ -5,7 +5,7 @@ namespace LojaDoSeuManoel.API.Controllers.User
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductGameController : ControllerBase
+    public class CustomerProductGameController : ControllerBase
     {
     }
 }

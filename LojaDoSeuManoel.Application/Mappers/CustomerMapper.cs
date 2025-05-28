@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LojaDoSeuManoel.Application.Mappers
 {
-    public class ProductGameMapper
+    public class CustomerMapper
     {
     }
 }

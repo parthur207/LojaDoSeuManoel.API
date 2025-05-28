@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LojaDoSeuManoel.Application.Mappers
 {
-    internal class OrderMapper
+    public class OrderMapper
     {
     }
 }

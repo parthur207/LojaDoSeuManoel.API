@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Domain.Models
+namespace LojaDoSeuManoel.Application.DTOs.Costumer
 {
-    internal class CreateOrderModel
+    public sealed class ProductGameDTO
     {
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Application.DTOs
+namespace LojaDoSeuManoel.Application.DTOs.Costumer
 {
-    internal class UserDTO
+    public sealed class OrderDTO
     {
     }
 }

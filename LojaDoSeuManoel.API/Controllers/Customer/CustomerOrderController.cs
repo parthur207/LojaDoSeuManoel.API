@@ -6,7 +6,7 @@ namespace LojaDoSeuManoel.API.Controllers.User
     [Authorize]
     [ApiController]
     [Route("api/order")]
-    public class OrderController : Controller
+    public class CustomerOrderController : Controller
     {
         public IActionResult Index()
         {

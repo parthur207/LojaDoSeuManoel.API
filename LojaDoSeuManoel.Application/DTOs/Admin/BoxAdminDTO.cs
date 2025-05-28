@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Application.DTOs
+namespace LojaDoSeuManoel.Application.DTOs.Admin
 {
-    internal class ProductGameDTO
+    public class BoxAdminDTO
     {
     }
 }

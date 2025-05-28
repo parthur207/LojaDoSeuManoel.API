@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LojaDoSeuManoel.Application.Mappers
 {
-    internal class BoxMapper
+    public class BoxMapper
     {
     }
 }
