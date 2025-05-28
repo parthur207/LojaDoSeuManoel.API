@@ -17,6 +17,24 @@ namespace LojaDoSeuManoel.Domain.Entities
 
         public List<ProductGameEntity> OrderList { get; private set; }
         public OrderStatusEnum OrderStatus { get; private set; }
-        public decimal TotalPrice => OrderList.Sum(x => x.Price);
+        public int CustomerId { get; private set; }
+        public CustomerEntity Costumer { get; private set; }
+        public decimal TotalValue { get; private set; }
+
+
+        public void UpdateOrderStatus(OrderStatusEnum NewStatus)
+        {
+            if (NewStatus == OrderStatus)
+            {
+                return;
+            }
+            OrderStatus = NewStatus;
+        }
+        public void CalculateTotalValue()
+        {
+            TotalValue = OrderList
+            .Where(x => x. != null)
+            .Sum(x => (decimal)x.Quantity * (decimal)x.Product.Price);
+        }
     }
 }

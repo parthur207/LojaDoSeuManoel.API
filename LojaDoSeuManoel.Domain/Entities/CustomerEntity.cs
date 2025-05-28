@@ -10,7 +10,7 @@ namespace LojaDoSeuManoel.Domain.Entities
 {
     public class CustomerEntity : BaseEntity
     {
-        public CustomerEntity(string email, string password)
+        public CustomerEntity(string email, string password)//para validação de login
         {
             Email = email;
             Password = password;
