@@ -13,6 +13,7 @@ namespace LojaDoSeuManoel.Domain.Models.Generic
         [EmailAddress(ErrorMessage = "E-mail em formato inválido.")]
         public string Email { get; set; }
 
+
         [Required(ErrorMessage = "Insira sua senha.")]
         public string Password { get; set; }
 
