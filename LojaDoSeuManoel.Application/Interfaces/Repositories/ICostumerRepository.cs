@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LojaDoSeuManoel.Infrastruture.Repositories.InterfacesRepository
 {
-    public interface ICostumerRepository
+    public interface ICustomerRepository
     {
  
         Task<ResponseModel<List<CustomerGenericDTO>?>> GetAllCustomersAsync();
