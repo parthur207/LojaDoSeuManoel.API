@@ -82,57 +82,345 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetAllSalesAsync()
         {
-            throw new NotImplementedException();
+            
+            ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
+
+            try
+            {
+                var sales = await _Dbcontext.ProductGame
+                    .Where(x => x.Status == ProductGameStatusEnum.Sold)
+                    .ToListAsync();
+
+                if (sales is null || !sales.Any())
+                {
+                    response.Status = false;
+                    response.Message = "Nenhuma venda encontrada.";
+                    return response;
+                }
+
+                response.Content = sales;
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                return response;
+            }
         }
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetAllSalesByCategoryAsync(ProductGameCategoryEnum category)
         {
-            throw new NotImplementedException();
+            
+            ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
+
+            try
+            {
+                var salesByCategory = await _Dbcontext.ProductGame
+                    .Where(x => x.Category == category && x.Status == ProductGameStatusEnum.Sold)
+                    .ToListAsync();
+
+                if (salesByCategory is null || !salesByCategory.Any())
+                {
+                    response.Status = false;
+                    response.Message = "Nenhuma venda encontrada para a categoria especificada.";
+                    return response;
+                }
+
+                response.Content = salesByCategory;
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                return response;
+            }
         }
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameByCategoryAsync(ProductGameCategoryEnum category)
         {
-            throw new NotImplementedException();
+            
+            ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
+
+            try
+            {
+                var productGamesByCategory = await _Dbcontext.ProductGame
+                    .Where(x => x.Category == category)
+                    .ToListAsync();
+
+                if (productGamesByCategory is null || !productGamesByCategory.Any())
+                {
+                    response.Status = false;
+                    response.Message = "Nenhum jogo encontrado para a categoria especificada.";
+                    return response;
+                }
+
+                response.Content = productGamesByCategory;
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                return response;
+            }
         }
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameByNameOrDescriptionAsync(string ItemOfQuery)
         {
-            throw new NotImplementedException();
+            
+            ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
+
+            try
+            {
+                var productGames = await _Dbcontext.ProductGame
+                    .Where(x => x.Name.Contains(ItemOfQuery) || x.Description.Contains(ItemOfQuery))
+                    .ToListAsync();
+
+                if (productGames is null || !productGames.Any())
+                {
+                    response.Status = false;
+                    response.Message = "Nenhum jogo encontrado com o critério de pesquisa especificado.";
+                    return response;
+                }
+
+                response.Content = productGames;
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                return response;
+            }
         }
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameByPriceAsync(decimal Price)
         {
-            throw new NotImplementedException();
+            
+            ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
+
+            try
+            {
+                var productGamesByPrice = await _Dbcontext.ProductGame
+                    .Where(x => x.Price <= Price)
+                    .ToListAsync();
+
+                if (productGamesByPrice is null || !productGamesByPrice.Any())
+                {
+                    response.Status = false;
+                    response.Message = $"Nenhum jogo encontrado com o preço de R$ 0.00 a R$ {Price}.";
+                    return response;
+                }
+
+                response.Content = productGamesByPrice;
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                return response;
+            }
         }
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameByStatusAsync(ProductGameStatusEnum status)
         {
-            throw new NotImplementedException();
+            
+            ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
+
+            try
+            {
+                var productGamesByStatus = await _Dbcontext.ProductGame
+                    .Where(x => x.Status == status)
+                    .ToListAsync();
+
+                if (productGamesByStatus is null || !productGamesByStatus.Any())
+                {
+                    response.Status = false;
+                    response.Message = "Nenhum jogo encontrado com o status especificado.";
+                    return response;
+                }
+
+                response.Content = productGamesByStatus;
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                return response;
+            }
         }
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameInactiveAsync()
         {
-            throw new NotImplementedException();
+           
+            ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
+
+            try
+            {
+                var inactiveGames = await _Dbcontext.ProductGame
+                    .Where(x => x.Status == ProductGameStatusEnum.Unavailable)
+                    .ToListAsync();
+
+                if (inactiveGames is null || !inactiveGames.Any())
+                {
+                    response.Status = false;
+                    response.Message = "Nenhum jogo inativo encontrado.";
+                    return response;
+                }
+
+                response.Content = inactiveGames;
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                return response;
+            }
         }
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameNoStockAsync()
         {
-            throw new NotImplementedException();
+            
+            ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
+
+            try
+            {
+                var noStockGames = await _Dbcontext.ProductGame
+                    .Where(x => x.Stock <= 0)
+                    .ToListAsync();
+
+                if (noStockGames is null || !noStockGames.Any())
+                {
+                    response.Status = false;
+                    response.Message = "Nenhum jogo sem estoque encontrado.";
+                    return response;
+                }
+
+                response.Content = noStockGames;
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                return response;
+            }
         }
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetTopFiveSalesAsync(ProductGameCategoryEnum category)
         {
-            throw new NotImplementedException();
+            
+            ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
+
+            try
+            {
+                var topSales = await _Dbcontext.ProductGame
+                    .Where(x => x.Category == category && x.Status == ProductGameStatusEnum.Sold)
+                    .OrderByDescending(x => x.Sales)
+                    .Take(5)
+                    .ToListAsync();
+
+                if (topSales is null || !topSales.Any())
+                {
+                    response.Status = false;
+                    response.Message = "Nenhuma venda encontrada para a categoria especificada.";
+                    return response;
+                }
+
+                response.Content = topSales;
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                return response;
+            }
         }
 
         public async Task<SimpleResponseModel> UpdateDataProductGameAsync(int ProductGameID, ProductGameEntity Entity)
         {
-            throw new NotImplementedException();
+           
+            SimpleResponseModel response = new SimpleResponseModel();
+            try
+            {
+                var existingGame = await _Dbcontext.ProductGame.FirstOrDefaultAsync(x=>x.Id==ProductGameID);
+                if (existingGame is null)
+                {
+                    response.Message = "Jogo não encontrado.";
+                    response.Status = false;
+                    return response;
+                }
+
+                existingGame.Name = Entity.Name;
+                existingGame.Description = Entity.Description;
+                existingGame.Price = Entity.Price;
+                existingGame.Stock = Entity.Stock;
+                existingGame.Category = Entity.Category;
+                existingGame.Status = Entity.Status;
+
+                _Dbcontext.ProductGame.Update(existingGame);
+                await _Dbcontext.SaveChangesAsync();
+
+                response.Message = "Dados do jogo atualizados com sucesso.";
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                response.Status = false;
+                return response;
+            }
         }
 
-        public async Task<SimpleResponseModel> UpdateStatusProductGameAsync(ProductGameStatusEnum NewStatus)
+        public async Task<SimpleResponseModel> UpdateStatusProductGameAsync(ProductGameStatusEnum NewStatus, int ProductGameID)
         {
-            throw new NotImplementedException();
+            
+            SimpleResponseModel response = new SimpleResponseModel();
+            try
+            {
+                var productGame = await _Dbcontext.ProductGame.FirstOrDefaultAsync(x=>x.Id== ProductGameID);
+
+                if (productGame is null)
+                {
+                    response.Message = "Nenhum jogo encontrado .";
+                    response.Status = false;
+                    return response;
+                }
+
+                foreach (var game in productGames)
+                {
+                    game.Status = NewStatus;
+                }
+
+                _Dbcontext.ProductGame.UpdateRange(productGames);
+                await _Dbcontext.SaveChangesAsync();
+
+                response.Message = "Status dos jogos atualizados com sucesso.";
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                response.Status = false;
+                return response;
+            }
         }
 
         public async Task<SimpleResponseModel> UpdateStockTotalAsync(int ProductGameID, int NewStock)

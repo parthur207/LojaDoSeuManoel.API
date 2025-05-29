@@ -55,6 +55,31 @@ namespace LojaDoSeuManoel.Domain.Entities
         public ProductGameCategoryEnum Category { get; private set; }
         public string? ImageUrl { get; private set; }
 
+        public void SetProductName(string newName)
+        {
+            if (string.IsNullOrWhiteSpace(newName) || Name == newName)
+            {
+                return;
+            }
+            Name = newName;
+        }
+        public void SetProductDescription(string newDescription)
+        {
+            if (string.IsNullOrWhiteSpace(newDescription) || Description == newDescription)
+            {
+                return;
+            }
+            Description = newDescription;
+        }
+        public void SetProductPrice(decimal newPrice)
+        {
+            if (newPrice <= 0 || Price == newPrice)
+            {
+                return;
+            }
+            Price = newPrice;
+        }
+
 
         public void IncreaseSales(int n)
         {
