@@ -8,5 +8,7 @@ namespace LojaDoSeuManoel.Application.DTOs.Admin
 {
     public class ProductGameAdminDTO
     {
+
+
     }
 }

@@ -16,7 +16,8 @@ namespace LojaDoSeuManoel.Domain.Entities
             Password = password;
         }
 
-        public CustomerEntity(string name, DateTime birthDate, string address, int? phoneNumber, string email, string password)
+
+        public CustomerEntity(string name, DateOnly birthDate, string address, int? phoneNumber, string email, string password)
         {
             Name = name;
             BirthDate = birthDate;
@@ -28,8 +29,10 @@ namespace LojaDoSeuManoel.Domain.Entities
             OrderList = new List<OrderEntity>();
         }
 
+        
+
         public string Name { get; private set; }
-        public DateTime BirthDate { get; private set; }
+        public DateOnly BirthDate { get; private set; }
         public string Address { get; private set; }
         public int? PhoneNumber { get; private set; }
         public string Email { get; private set; }

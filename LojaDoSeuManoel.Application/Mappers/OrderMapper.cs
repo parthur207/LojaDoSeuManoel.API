@@ -8,5 +8,10 @@ namespace LojaDoSeuManoel.Application.Mappers
 {
     public class OrderMapper
     {
+
+        //Model para entity
+
+
+        //Entity para DTO
     }
 }
