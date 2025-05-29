@@ -19,15 +19,15 @@ public class CreateProductGameModel
 
 
     [Range(0, 1000, ErrorMessage = "A altura deve estar entre 0 e 1000.")]
-    public decimal Height { get; private set; }
+    public decimal Height { get; set; }
 
 
     [Range(0, 1000, ErrorMessage = "A largura deve estar entre 0 e 1000.")]
-    public decimal Width { get; private set; }
+    public decimal Width { get;  set; }
 
 
     [Range(0, 1000, ErrorMessage = "O comprimento deve estar entre 0 e 1000.")]
-    public decimal Length { get; private set; }
+    public decimal Length { get;  set; }
 
 
     [Required(ErrorMessage = "O estoque é obrigatório.")]

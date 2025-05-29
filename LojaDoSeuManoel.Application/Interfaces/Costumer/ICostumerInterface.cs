@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace LojaDoSeuManoel.Application.Interfaces.Costumer
 {
-    internal class ICostumerInterface
+    public interface ICustomerInterface
     {
+
+
     }
 }

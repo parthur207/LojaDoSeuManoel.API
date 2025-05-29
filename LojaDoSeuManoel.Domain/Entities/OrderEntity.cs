@@ -13,15 +13,14 @@ namespace LojaDoSeuManoel.Domain.Entities
         {
             CustomerId = customerId;
             OrderList = orderList;
+            CreatedAt = DateTime.Now;
             OrderStatus = OrderStatusEnum.Pending;
-            OrderDate = DateTime.Now;
         }
 
         public List<OrderProductGameEntity> OrderList { get; private set; }
         public OrderStatusEnum OrderStatus { get; private set; }
         public int CustomerId { get; private set; }
         public CustomerEntity Costumer { get; private set; }
-        public DateTime OrderDate { get; private set; }
         public decimal TotalValue { get; private set; }
 
 

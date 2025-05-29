@@ -17,9 +17,9 @@ namespace LojaDoSeuManoel.Domain.Entities
 
         public int Id { get; private set; }
 
-        public DateTime CreatedAt { get; private set; }
+        public DateTime CreatedAt { get; protected set; }
 
-        public DateTime UpdatedAt { get; private set; }
+        public DateTime UpdatedAt { get; protected set; }
 
         public bool Active { get; private set; }
 

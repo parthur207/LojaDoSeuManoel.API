@@ -1,5 +1,5 @@
-﻿using LojaDoSeuManoel.Application.DTOs.Admin;
-using LojaDoSeuManoel.Application.DTOs.Costumer;
+﻿using LojaDoSeuManoel.Application.DTOs.Costumer;
+using LojaDoSeuManoel.Application.DTOs.Generic;
 using LojaDoSeuManoel.Domain.Entities;
 using LojaDoSeuManoel.Domain.Models.Customer;
 using LojaDoSeuManoel.Domain.Models.Generic;
@@ -36,19 +36,21 @@ namespace LojaDoSeuManoel.Application.Mappers
 
 
         //entity para dto
-        public static CustomerAdminDTO ToCustomerEntity(CustomerEntity entity)
+        public static CustomerGenericDTO ToCustomerDTO(CustomerEntity entity)
         {
-            return new CustomerAdminDTO();
+            return new CustomerGenericDTO 
+            { 
+                Name=entity.Name,
+                BirthDate=entity.BirthDate,
+                PhoneNumber= entity.PhoneNumber, 
+                Email=entity.Email,
+                Role= entity.Role, 
+                OrderList=entity.OrderList, 
+                Active=entity.Active 
+            };
         }
 
-        public static CustomerDTO ToCustomerDTO(CustomerEntity entity)
-        {
-            return new CustomerDTO();
-        }
-        public static CustomerEntity ToCustomerEntity(CreateCustomerModel model)
-        {
-            return (model.)
-        }
+     
 
     }
 }

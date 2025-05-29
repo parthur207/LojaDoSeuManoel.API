@@ -9,11 +9,11 @@ namespace LojaDoSeuManoel.Application.DTOs.Admin
 {
     public class BoxAdminDTO
     {
-        public BoxTypeEnum BoxType { get; private set; }
-        public decimal Height { get; private set; }
-        public decimal Width { get; private set; }
-        public decimal Length { get; private set; }
-        public decimal Volume { get; private set; }
-        public DateTime CreatedAt { get; private set; }
+        public BoxTypeEnum BoxType { get;  set; }
+        public decimal Height { get;  set; }
+        public decimal Width { get;  set; }
+        public decimal Length { get;  set; }
+        public decimal Volume { get;  set; }
+        public DateTime CreatedAt { get;  set; }
     }
 }

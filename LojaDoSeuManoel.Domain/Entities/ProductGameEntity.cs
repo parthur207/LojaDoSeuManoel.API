@@ -32,6 +32,17 @@ namespace LojaDoSeuManoel.Domain.Entities
             ImageUrl = imageUrl;
         }
 
+        public ProductGameEntity(string name, string description, decimal price, decimal height, decimal width, decimal length, string? imagemUrl)
+        {
+            Name = name;
+            Description = description;
+            Price = price;
+            Length = length;
+            Height = height;
+            Width = width;
+            ImageUrl = imagemUrl;
+        }
+
         public string Name { get; private set; }
         public string Description { get; private set; }
         public decimal Price { get; private set; }

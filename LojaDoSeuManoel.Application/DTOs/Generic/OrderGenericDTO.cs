@@ -6,16 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Application.DTOs.Admin
+namespace LojaDoSeuManoel.Application.DTOs.Generic
 {
-    public class OrderAdminDTO
+    public class OrderGenericDTO
     {
         public List<OrderProductGameEntity> OrderList { get; set; }
         public int OrderId { get; set; }
-        public DateTime OrderDate { get; set; }
+        public DateTime CreatedAt { get; set; }
         public decimal TotalValue { get; set; }
         public OrderStatusEnum Status { get; set; }
         public string CustomerName { get; set; }
         public string CustomerEmail { get; set; }
+
     }
 }

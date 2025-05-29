@@ -1,5 +1,7 @@
 ﻿using LojaDoSeuManoel.Application.DTOs.Admin;
 using LojaDoSeuManoel.Application.DTOs.Costumer;
+using LojaDoSeuManoel.Application.DTOs.Generic;
+using LojaDoSeuManoel.Application.Interfaces.Generic;
 using LojaDoSeuManoel.Domain.Models.ResponsePattern;
 using System;
 using System.Collections.Generic;
@@ -12,11 +14,11 @@ namespace LojaDoSeuManoel.Application.Interfaces.Admin
     public interface IAdminOrderInterface
     {
         //Querys
-        Task<ResponseModel<List<OrderAdminDTO>?>> GetAllOrdersAdmin();
+        Task<ResponseModel<List<OrderGenericDTO>?>> GetAllOrdersAdmin();
 
-        Task<ResponseModel<List<OrderAdminDTO>?>> GetOrderByCustomerAdmin(string Email);
+        Task<ResponseModel<List<OrderGenericDTO>?>> GetOrderByCustomerAdmin(string Email);
 
-        Task<ResponseModel<List<OrderAdminDTO>?>> GetOrderByIdAdmin(int OrderId);
+        Task<ResponseModel<List<OrderGenericDTO>?>> GetOrderByIdAdmin(int OrderId);
 
 
         //Commands

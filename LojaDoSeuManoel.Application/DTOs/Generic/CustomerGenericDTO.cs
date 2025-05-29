@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Application.DTOs.Admin
+namespace LojaDoSeuManoel.Application.DTOs.Generic
 {
-    public class CustomerAdminDTO
+    public class CustomerGenericDTO
     {
         public string Name { get; set; }
-        public DateOnly BirthDate { get;  set; }
+        public DateOnly BirthDate { get; set; }
         public string Address { get; set; }
         public int? PhoneNumber { get; set; }
         public string Email { get; set; }

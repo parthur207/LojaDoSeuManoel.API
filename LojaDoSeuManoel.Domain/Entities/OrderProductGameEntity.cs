@@ -8,6 +8,7 @@ namespace LojaDoSeuManoel.Domain.Entities
 {
     public class OrderProductGameEntity : BaseEntity
     {
+        public OrderProductGameEntity() { }
         public OrderProductGameEntity(int orderId, int productGameId, int quantity)
         {
             OrderId = orderId;
@@ -15,12 +16,18 @@ namespace LojaDoSeuManoel.Domain.Entities
             Quantity = quantity;
         }
 
-        public int OrderId { get; private set; }
-        public OrderEntity Order { get; private set; }
+        public OrderProductGameEntity( int productGameId, int quantity)
+        {
+            ProductGameId = productGameId;
+            Quantity = quantity;
+        }
 
-        public int ProductGameId { get; private set; }
-        public ProductGameEntity ProductGame { get; private set; }
+        public int OrderId { get;  set; }
+        public OrderEntity Order { get;  set; }
 
-        public int Quantity { get; private set; }
+        public int ProductGameId { get;  set; }
+        public ProductGameEntity ProductGame { get;  set; }
+
+        public int Quantity { get;  set; }
     }
 }

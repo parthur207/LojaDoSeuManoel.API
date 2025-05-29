@@ -1,4 +1,4 @@
-﻿using LojaDoSeuManoel.Application.DTOs.Admin;
+﻿using LojaDoSeuManoel.Application.DTOs.Generic;
 using LojaDoSeuManoel.Domain.Models.ResponsePattern;
 using System;
 using System.Collections.Generic;
@@ -11,8 +11,8 @@ namespace LojaDoSeuManoel.Application.Interfaces.Admin
     public interface IAdminCostumerInterface
     {
         //Querys
-        Task<ResponseModel<List<CustomerAdminDTO>?>> GetAllCustomersAdmin();
-        Task<ResponseModel<CustomerAdminDTO?>> GetCustomerByEmailAdmin();
+        Task<ResponseModel<List<CustomerGenericDTO>?>> GetAllCustomersAdmin();
+        Task<ResponseModel<CustomerGenericDTO?>> GetCustomerByEmailAdmin();
 
 
         //Commands
