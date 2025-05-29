@@ -22,8 +22,6 @@ namespace LojaDoSeuManoel.Domain.Entities
         public decimal Height { get; private set; }
         public decimal Width { get; private set; }
         public decimal Length { get; private set; }
-        public decimal Volume { get; private set; }//Volume = Height * Width * Length;
-
-        
+        public decimal Volume { get; private set; }//Volume = Height * Width * Length;   
     }
 }
