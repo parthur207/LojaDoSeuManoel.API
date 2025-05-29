@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LojaDoSeuManoel.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace LojaDoSeuManoel.Domain.Models.Customer
 {
-    internal class CreateOrderModel
+    public class CreateOrderModel
     {
+        [Required(ErrorMessage = "A lista de produtos é obrigatória.")]
+        [MinLength(1, ErrorMessage = "A lista de produtos deve conter ao menos um item.")]
+        public List<OrderProductGameEntity> ShoppingList { get; set; }
     }
 }

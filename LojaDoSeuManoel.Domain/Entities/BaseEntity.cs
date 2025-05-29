@@ -15,7 +15,7 @@ namespace LojaDoSeuManoel.Domain.Entities
             Active = true;
         }
 
-        public Guid Id { get; private set; }
+        public int Id { get; private set; }
 
         public DateTime CreatedAt { get; private set; }
 

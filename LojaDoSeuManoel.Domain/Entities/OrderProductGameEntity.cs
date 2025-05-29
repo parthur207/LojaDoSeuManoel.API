@@ -8,17 +8,17 @@ namespace LojaDoSeuManoel.Domain.Entities
 {
     public class OrderProductGameEntity : BaseEntity
     {
-        public OrderProductGameEntity(Guid orderId, Guid productGameId, int quantity)
+        public OrderProductGameEntity(int orderId, int productGameId, int quantity)
         {
             OrderId = orderId;
             ProductGameId = productGameId;
             Quantity = quantity;
         }
 
-        public Guid OrderId { get; private set; }
+        public int OrderId { get; private set; }
         public OrderEntity Order { get; private set; }
 
-        public Guid ProductGameId { get; private set; }
+        public int ProductGameId { get; private set; }
         public ProductGameEntity ProductGame { get; private set; }
 
         public int Quantity { get; private set; }

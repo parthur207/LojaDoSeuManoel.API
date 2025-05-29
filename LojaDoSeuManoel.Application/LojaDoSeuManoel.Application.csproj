@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\Generic\" />
+    <ProjectReference Include="..\LojaDoSeuManoel.Domain\LojaDoSeuManoel.Domain.csproj" />
   </ItemGroup>
 
 </Project>

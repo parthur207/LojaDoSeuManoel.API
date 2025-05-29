@@ -9,12 +9,26 @@ namespace LojaDoSeuManoel.Domain.Entities
 {
     public class ProductGameEntity : BaseEntity
     {
-        public ProductGameEntity(string name, string description, decimal price, string imageUrl)
+        public ProductGameEntity(string name, string description, decimal price, decimal height, decimal width, decimal length, int stock, ProductGameCategoryEnum category, string? imageUrl)
         {
             Name = name;
             Description = description;
             Price = price;
-            Status = ProductGameStatusEnum.Available;   
+            Height = height;
+            Width = width;
+            Length = length;
+            if (stock>0) 
+            {
+                Status = ProductGameStatusEnum.Available;
+                Stock = stock;
+            }
+            else
+            {
+                Status = ProductGameStatusEnum.NoStock;
+                Stock = stock;
+            }
+            Sales = 0;
+            Category = category;
             ImageUrl = imageUrl;
         }
 
@@ -24,8 +38,86 @@ namespace LojaDoSeuManoel.Domain.Entities
         public decimal Height { get; private set; }
         public decimal Width { get; private set; }
         public decimal Length { get; private set; }
+        public  int Stock { get; private set; }
+        public int Sales { get; private set; }
         public ProductGameStatusEnum Status { get; private set; }
         public ProductGameCategoryEnum Category { get; private set; }
         public string? ImageUrl { get; private set; }
+
+
+        public void IncreaseSales(int n)
+        {
+            Sales += n;
+        }
+
+        public void IncreaseStock(int n)
+        {
+            Stock += n;
+        }
+
+        public void ReduceStock(int n)
+        {
+            if (Stock > 0)
+            {
+                Stock -= n;
+
+                if (Stock == 0)
+                {
+                    Status = ProductGameStatusEnum.NoStock;
+                }
+            }
+        }
+
+        public bool SetProductCategory(ProductGameCategoryEnum newCategory)
+        {
+            if (Category == newCategory)
+            {
+                return false;
+            }
+            Category = newCategory;
+            return true;
+        }
+
+        public bool SetProductStatusToAvailable()
+        {
+            if (Status== ProductGameStatusEnum.Available)
+            {
+                return false;
+            }
+            Status = ProductGameStatusEnum.Available;
+            return true;
+        }
+
+        public bool SetProductStatusToUnavailable()
+        {
+            if (Status == ProductGameStatusEnum.Unavailable)
+            {
+                return false;
+            }
+            Status = ProductGameStatusEnum.Unavailable;
+            return true;
+        }
+
+        public bool SetProductStatusToReserved()
+        {
+            if (Status == ProductGameStatusEnum.Reserved)
+            {
+                return false;
+            }
+            Status = ProductGameStatusEnum.Reserved;
+            return true;
+        }
+
+        public bool SetProductStatusToSold()
+        {
+            if (Status == ProductGameStatusEnum.Sold)
+            {
+                return false;
+            }
+            Status = ProductGameStatusEnum.Sold;
+            return true;
+        }
+
+        
     }
 }

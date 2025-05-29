@@ -9,7 +9,7 @@ namespace LojaDoSeuManoel.Domain.Entities
 {
     public class OrderEntity : BaseEntity
     {
-        public OrderEntity(Guid customerId, List<OrderProductGameEntity> orderList)
+        public OrderEntity(int customerId, List<OrderProductGameEntity> orderList)
         {
             CustomerId = customerId;
             OrderList = orderList;
@@ -18,7 +18,7 @@ namespace LojaDoSeuManoel.Domain.Entities
 
         public List<OrderProductGameEntity> OrderList { get; private set; }
         public OrderStatusEnum OrderStatus { get; private set; }
-        public Guid CustomerId { get; private set; }
+        public int CustomerId { get; private set; }
         public CustomerEntity Costumer { get; private set; }
         public decimal TotalValue { get; private set; }
 
