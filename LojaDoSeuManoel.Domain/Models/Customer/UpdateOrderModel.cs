@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LojaDoSeuManoel.Domain.Models.Customer
 {
-    internal class UpdateOrderModel
+    public class UpdateOrderModel
     {
     }
 }

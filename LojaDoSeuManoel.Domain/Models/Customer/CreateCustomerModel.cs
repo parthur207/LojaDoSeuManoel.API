@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace LojaDoSeuManoel.Domain.Models.Customer
 {
-    public class UpdateCostumerModel
+    internal class CreateCustomerModel
     {
-
-        public string  { get; set; }
     }
 }
