@@ -24,9 +24,14 @@ namespace LojaDoSeuManoel.Domain.Entities
         public bool Active { get; private set; }
 
 
-        public void SetAsInactived()
+        public void SetToInactived()
         {
             Active = false;
+        }
+
+        public void SetToActived()
+        {
+            Active = true;
         }
 
         public void SetDateUpdate()

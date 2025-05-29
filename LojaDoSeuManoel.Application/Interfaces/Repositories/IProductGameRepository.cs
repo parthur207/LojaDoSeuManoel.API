@@ -1,4 +1,5 @@
 ﻿using LojaDoSeuManoel.Application.DTOs.Admin;
+using LojaDoSeuManoel.Domain.Entities;
 using LojaDoSeuManoel.Domain.Enuns;
 using LojaDoSeuManoel.Domain.Models.Admin;
 using LojaDoSeuManoel.Domain.Models.ResponsePattern;
@@ -13,24 +14,24 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories.InterfacesRepository
     public interface IProductGameRepository
     {
         //Querys
-        Task<ResponseModel<List<ProductGameAdminDTO>?>> GetAllProductGameAsync();
-        Task<ResponseModel<List<ProductGameAdminDTO>?>> GetProductGameByNameOrDescriptionAsync(string ItemOfQuery);
-        Task<ResponseModel<List<ProductGameAdminDTO>?>> GetProductGameByStatusAsync(ProductGameStatusEnum status);
-        Task<ResponseModel<List<ProductGameAdminDTO>?>> GetProductGameByCategoryAsync(ProductGameCategoryEnum category);
-        Task<ResponseModel<List<ProductGameAdminDTO>?>> GetProductGameByPriceAsync(decimal Price);
-        Task<ResponseModel<List<ProductGameAdminDTO>?>> GetProductGameNoStockAsync();
-        Task<ResponseModel<List<ProductGameAdminDTO>?>> GetProductGameInactiveAsync();
+        Task<ResponseModel<List<ProductGameEntity>?>> GetAllProductGameAsync();
+        Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameByNameOrDescriptionAsync(string ItemOfQuery);
+        Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameByStatusAsync(ProductGameStatusEnum status);
+        Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameByCategoryAsync(ProductGameCategoryEnum category);
+        Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameByPriceAsync(decimal Price);
+        Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameNoStockAsync();
+        Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameInactiveAsync();
 
         //Vendas
-        Task<ResponseModel<List<ProductGameAdminDTO>?>> GetAllSalesAsync();
-        Task<ResponseModel<List<ProductGameAdminDTO>?>> GetAllSalesByCategoryAsync(ProductGameCategoryEnum category);
-        Task<ResponseModel<List<ProductGameAdminDTO>?>> GetTopFiveSalesAsync(ProductGameCategoryEnum category);
+        Task<ResponseModel<List<ProductGameEntity>?>> GetAllSalesAsync();
+        Task<ResponseModel<List<ProductGameEntity>?>> GetAllSalesByCategoryAsync(ProductGameCategoryEnum category);
+        Task<ResponseModel<List<ProductGameEntity>?>> GetTopFiveSalesAsync(ProductGameCategoryEnum category);
 
 
         //Commands
-        Task<ResponseModel<SimpleResponseModel>> CreateProductGameAsync(CreateProductGameModel model);
-        Task<SimpleResponseModel> UpdateDataProductGameAsync(int ProductGameID, UpdateProductGameModel model);
-        Task<ResponseModel<SimpleResponseModel>> UpdateStockTotalAsync(int ProductGameID, int NewStock);
-        Task<ResponseModel<SimpleResponseModel>> UpdateStatusProductGameAsync(ProductGameStatusEnum NewStatus);
+        Task<SimpleResponseModel> CreateProductGameAsync(ProductGameEntity model);
+        Task<SimpleResponseModel> UpdateDataProductGameAsync(int ProductGameID, ProductGameEntity model);
+        Task<SimpleResponseModel> UpdateStockTotalAsync(int ProductGameID, int NewStock);
+        Task<SimpleResponseModel> UpdateStatusProductGameAsync(ProductGameStatusEnum NewStatus);
     }
 }

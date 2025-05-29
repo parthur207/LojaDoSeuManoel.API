@@ -8,13 +8,9 @@ namespace LojaDoSeuManoel.Domain.Models.ResponsePattern
 {
     public class SimpleResponseModel
     {
-        public SimpleResponseModel(bool status, string message)
-        {
-            Status = status;
-            Message = message;
-        }
+        public SimpleResponseModel(){ }
 
         public bool Status { get; set; }
-        public string Message { get; set; }
+        public string? Message { get; set; }
     }
 }

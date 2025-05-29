@@ -1,4 +1,5 @@
 ﻿using LojaDoSeuManoel.Application.DTOs.Generic;
+using LojaDoSeuManoel.Domain.Entities;
 using LojaDoSeuManoel.Domain.Models.ResponsePattern;
 
 namespace LojaDoSeuManoel.Infrastruture.Repositories.InterfacesRepository
@@ -6,9 +7,9 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories.InterfacesRepository
     public interface IOrderRepository
     {
         //Querys
-        Task<ResponseModel<List<OrderGenericDTO>?>> GetAllOrdersAsync();
-        Task<ResponseModel<List<OrderGenericDTO>?>> GetOrderByCustomerAsync(string Email);
-        Task<ResponseModel<List<OrderGenericDTO>?>> GetOrderByIdAsync(int OrderId);
+        Task<ResponseModel<List<OrderEntity>?>> GetAllOrdersAsync();
+        Task<ResponseModel<List<OrderEntity>?>> GetOrderByCustomerAsync(string Email);
+        Task<ResponseModel<List<OrderEntity>?>> GetOrderByIdAsync(int OrderId);
 
         //Commands
         Task<SimpleResponseModel> UpdateStatusToProcessingAsync(int OrderId);

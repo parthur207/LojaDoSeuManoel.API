@@ -1,4 +1,5 @@
 ﻿using LojaDoSeuManoel.Application.DTOs.Admin;
+using LojaDoSeuManoel.Domain.Entities;
 using LojaDoSeuManoel.Domain.Enuns;
 using LojaDoSeuManoel.Domain.Models.ResponsePattern;
 using System;
@@ -12,7 +13,7 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories.InterfacesRepository
     public interface IBoxRepository
     {
         //Admin
-        Task<ResponseModel<List<BoxAdminDTO>?>> GetAllBoxesAdminAsync();
-        Task<ResponseModel<BoxAdminDTO>?> GetBoxByTypeAdminAsync(BoxTypeEnum Type);
+        Task<ResponseModel<List<BoxEntity>?>> GetAllBoxesAdminAsync();
+        Task<ResponseModel<BoxEntity>?> GetBoxByTypeAdminAsync(BoxTypeEnum Type);
     }
 }

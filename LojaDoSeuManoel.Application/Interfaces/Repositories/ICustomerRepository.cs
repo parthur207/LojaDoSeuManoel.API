@@ -1,4 +1,5 @@
 ﻿using LojaDoSeuManoel.Application.DTOs.Generic;
+using LojaDoSeuManoel.Domain.Entities;
 using LojaDoSeuManoel.Domain.Models.ResponsePattern;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories.InterfacesRepository
     public interface ICustomerRepository
     {
  
-        Task<ResponseModel<List<CustomerGenericDTO>?>> GetAllCustomersAsync();
-        Task<ResponseModel<CustomerGenericDTO?>> GetCustomerByEmailAsync(string Email);
+        Task<ResponseModel<List<CustomerEntity>?>> GetAllCustomersAsync();
+        Task<ResponseModel<CustomerEntity?>> GetCustomerByEmailAsync(string Email);
         Task<SimpleResponseModel> InactivateCustomerAsync(string Email);
-        Task<SimpleResponseModel> ActiveCustomeAsync(string Email);
+        Task<SimpleResponseModel> ActiveCustomerAsync(string Email);
     }
 }
