@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LojaDoSeuManoel.Application.Interfaces.Admin
 {
-    public interface IAdminCostumerInterface
+    public interface IAdminCustomerInterface
     {
         //Querys
         Task<ResponseModel<List<CustomerGenericDTO>?>> GetAllCustomersAdmin();

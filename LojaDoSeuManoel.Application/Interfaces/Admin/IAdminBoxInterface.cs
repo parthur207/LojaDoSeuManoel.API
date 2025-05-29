@@ -14,7 +14,7 @@ namespace LojaDoSeuManoel.Application.Interfaces.Admin
     {
 
         //Querys
-        Task<ResponseModel<List<BoxAdminDTO>?>> GetBoxesAdmin();
+        Task<ResponseModel<List<BoxAdminDTO>?>> GetAllBoxesAdmin();
         Task<ResponseModel<BoxAdminDTO>?> GetBoxByTypeAdmin(BoxTypeEnum Type);
     }
 }

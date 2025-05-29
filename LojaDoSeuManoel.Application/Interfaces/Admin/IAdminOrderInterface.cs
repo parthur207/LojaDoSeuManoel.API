@@ -25,6 +25,7 @@ namespace LojaDoSeuManoel.Application.Interfaces.Admin
         Task<SimpleResponseModel> UpdateStatusToProcessingAdmin(int OrderId);
         Task<SimpleResponseModel> UpdateStatusToShippedAdmin(int OrderId);
         Task<SimpleResponseModel> UpdateStatusToDeliveredAdmin(int OrderId);
+        Task<SimpleResponseModel> UpdateOrderToCancelledAdmin(int OrderId);
         Task<SimpleResponseModel> UpdateStatusToReturnedAdmin(int OrderId);
 
 

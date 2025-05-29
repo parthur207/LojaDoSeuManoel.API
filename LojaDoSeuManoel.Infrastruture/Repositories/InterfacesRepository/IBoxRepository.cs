@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Application.Interfaces.Costumer
+namespace LojaDoSeuManoel.Infrastruture.Repositories.InterfacesRepository
 {
-    public interface ICustomerInterface
+    public interface IBoxRepository
     {
 
 

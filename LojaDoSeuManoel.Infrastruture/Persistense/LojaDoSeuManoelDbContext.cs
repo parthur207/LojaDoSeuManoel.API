@@ -9,7 +9,6 @@ namespace LojaDoSeuManoel.Infrastruture.Persistense
             : base(options)
         {
         }
-
         public DbSet<BoxEntity> Box {get;set;}
         public DbSet<CustomerEntity> Customer { get; set; }
         public DbSet<ProductGameEntity> ProductGame { get; set; }
