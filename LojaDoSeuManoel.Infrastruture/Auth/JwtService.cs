@@ -20,7 +20,7 @@ namespace LojaDoSeuManoel.Infrastruture.Auth
         public JwtService(IConfiguration configuration)
         {
             _secretKey = configuration["Jwt:Key"];
-            _issuer = configuration["Jwt:Issuer"];
+            _issuer = configuration["Jwt:Issuer"];  
             _audience = configuration["Jwt:Audience"];
             _expirationMinutes = int.Parse(configuration["Jwt:ExpirationInMinutes"]);
         }

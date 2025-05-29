@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Application.Interfaces.Admin
+namespace LojaDoSeuManoel.Domain.Models.Customer
 {
-    public interface IAdminOrderProductGameInterface
+    public class UpdateCostumerModel
     {
+
+        public string  { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LojaDoSeuManoel.Application.Interfaces.Admin
 {
-    internal interface IAdminCostumerInterface
+    public interface IAdminCostumerInterface
     {
     }
 }

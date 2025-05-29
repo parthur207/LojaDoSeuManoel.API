@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Application.Services.Admin
+namespace LojaDoSeuManoel.Application.Interfaces.Admin
 {
-    internal class OrderAdminService
+    public interface IAdminBoxInterface
     {
     }
 }

@@ -9,7 +9,7 @@ namespace LojaDoSeuManoel.Domain.Entities
 {
     public class BoxEntity : BaseEntity
     {
-        public BoxEntity(BoxTypeEnum boxType, decimal height, decimal width, decimal length, decimal volume)
+        public BoxEntity(BoxTypeEnum boxType, decimal height, decimal width, decimal length)
         {
             BoxType = boxType;
             Height = height;
