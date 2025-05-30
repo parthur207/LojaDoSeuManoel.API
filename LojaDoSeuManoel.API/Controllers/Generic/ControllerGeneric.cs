@@ -1,7 +1,7 @@
 ﻿using LojaDoSeuManoel.Application.Interfaces.Generic;
 using LojaDoSeuManoel.Domain.Models.Customer;
 using LojaDoSeuManoel.Domain.Models.Generic;
-using LojaDoSeuManoel.Infrastruture.Auth;
+using LojaDoSeuManoel.Infrastructure.Auth;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

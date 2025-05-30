@@ -1,5 +1,5 @@
 ﻿using LojaDoSeuManoel.Application.DTOs.Admin;
-using LojaDoSeuManoel.Application.DTOs.Costumer;
+using LojaDoSeuManoel.Application.DTOs.Customer;
 using LojaDoSeuManoel.Domain.Entities;
 using LojaDoSeuManoel.Domain.Models.Admin;
 using System;

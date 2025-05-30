@@ -1,9 +1,9 @@
 ﻿using LojaDoSeuManoel.Application.DTOs.Generic;
+using LojaDoSeuManoel.Application.Repositories;
 using LojaDoSeuManoel.Domain.Entities;
 using LojaDoSeuManoel.Domain.Enuns;
 using LojaDoSeuManoel.Domain.Models.ResponsePattern;
-using LojaDoSeuManoel.Infrastruture.Persistense;
-using LojaDoSeuManoel.Infrastruture.Repositories.InterfacesRepository;
+using LojaDoSeuManoel.Infrastructure.Persistense;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Infrastruture.Repositories
+namespace LojaDoSeuManoel.Infrastructure.Repositories
 {
     public class OrderRepository : IOrderRepository
     {

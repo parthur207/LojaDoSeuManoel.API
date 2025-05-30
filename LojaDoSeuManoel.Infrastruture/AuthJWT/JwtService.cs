@@ -8,7 +8,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Infrastruture.Auth
+namespace LojaDoSeuManoel.Infrastructure.Auth
 {
     public class JwtService : IJwtInterface
     {

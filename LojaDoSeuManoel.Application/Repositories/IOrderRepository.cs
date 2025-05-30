@@ -2,7 +2,7 @@
 using LojaDoSeuManoel.Domain.Entities;
 using LojaDoSeuManoel.Domain.Models.ResponsePattern;
 
-namespace LojaDoSeuManoel.Infrastruture.Repositories.InterfacesRepository
+namespace LojaDoSeuManoel.Application.Repositories
 {
     public interface IOrderRepository
     {

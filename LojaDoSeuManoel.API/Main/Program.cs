@@ -1,6 +1,6 @@
-using LojaDoSeuManoel.Infrastruture.Auth;
-using LojaDoSeuManoel.Infrastruture.ExternalService;
-using LojaDoSeuManoel.Infrastruture.Persistense;
+using LojaDoSeuManoel.Infrastructure.Auth;
+using LojaDoSeuManoel.Infrastructure.ExternalService;
+using LojaDoSeuManoel.Infrastructure.Persistense;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
