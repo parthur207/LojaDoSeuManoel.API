@@ -1,4 +1,5 @@
 ﻿using LojaDoSeuManoel.Application.Interfaces.Generic;
+using LojaDoSeuManoel.Application.Interfaces.Repositories;
 using LojaDoSeuManoel.Domain.Models.Customer;
 using LojaDoSeuManoel.Domain.Models.Generic;
 using LojaDoSeuManoel.Domain.Models.ResponsePattern;
@@ -16,7 +17,7 @@ namespace LojaDoSeuManoel.Application.Services.Generic
 
         public Task<SimpleResponseModel> CreateNewCustomer(CreateCustomerModel model)
         {
-            throw new NotImplementedException();
+            var response = _authGenericInterface.CreateNewCustomer(model);
         }
 
         public Task<ResponseModel<(int, string)>> GetUserDatas(string email)

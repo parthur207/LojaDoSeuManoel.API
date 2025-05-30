@@ -12,8 +12,7 @@ namespace LojaDoSeuManoel.Application.Interfaces.Repositories
     public interface IAuthRepository
     {
         //Commands
-        Task<SimpleResponseModel> CreateNewCustomerAsync(CustomerEntity model);
-        Task<SimpleResponseModel> ValidationCredentials(LoginModel model);
-        Task<ResponseModel<(int, string)>> GetUserDatas(string email);
+        Task<SimpleResponseModel> CreateNewCustomerAsync(CustomerEntity entity);
+        Task<ResponseModel<int>> ValidationCredentialsAsync(CustomerEntity entity);
     }
 }
