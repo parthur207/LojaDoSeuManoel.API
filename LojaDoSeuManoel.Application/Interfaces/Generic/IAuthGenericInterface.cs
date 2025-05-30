@@ -13,7 +13,6 @@ namespace LojaDoSeuManoel.Application.Interfaces.Generic
     {
         //Commands
         Task<SimpleResponseModel> CreateNewCustomer(CreateCustomerModel model);
-        Task<SimpleResponseModel> ValidationCredentials(LoginModel model);
-        Task<ResponseModel<(int, string)>> GetUserDatas(string email);
+        Task<ResponseModel<object?>> ValidationCredentials(LoginModel model);
     }
 }

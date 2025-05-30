@@ -1,5 +1,7 @@
 ﻿using LojaDoSeuManoel.Application.Interfaces.Generic;
-using LojaDoSeuManoel.Application.Interfaces.Repositories;
+
+using LojaDoSeuManoel.Application.Mappers;
+using LojaDoSeuManoel.Application.Repositories;
 using LojaDoSeuManoel.Domain.Models.Customer;
 using LojaDoSeuManoel.Domain.Models.Generic;
 using LojaDoSeuManoel.Domain.Models.ResponsePattern;
@@ -13,21 +15,59 @@ namespace LojaDoSeuManoel.Application.Services.Generic
 {
     public class AuthGenericService : IAuthGenericInterface
     {
-        private readonly IAuthRepository _authGenericInterface;
+        private readonly IAuthRepository _authRepository;
 
-        public Task<SimpleResponseModel> CreateNewCustomer(CreateCustomerModel model)
+        public async Task<SimpleResponseModel> CreateNewCustomer(CreateCustomerModel model)
         {
-            var response = _authGenericInterface.CreateNewCustomer(model);
+            SimpleResponseModel response = new SimpleResponseModel();
+
+            if (model is null)
+            {
+                response.Status = false;
+                response.Message = "Um mais dados estão nulos.";
+                return response;
+            }
+
+            var CustomerMapped = CustomerMapper.ToCreateCustomerEntity(model);
+
+            var responseRespository = await _authRepository.CreateNewCustomerAsync(CustomerMapped);
+
+            if (responseRespository.Status is false)
+            {
+                return responseRespository;
+            }
+
+            response.Status = true;
+            response.Message = "Cliente cadastrado com sucesso.";
+            return response;
         }
 
-        public Task<ResponseModel<(int, string)>> GetUserDatas(string email)
+        public async Task<ResponseModel<object?>> ValidationCredentials(LoginModel model)
         {
-            throw new NotImplementedException();
-        }
+            ResponseModel<object?> response = new ResponseModel<object?>();
+            if (model is null)
+            {
+                response.Status = false;
+                response.Message = "Dados de login inválidos.";
+                return response;
+            }
 
-        public Task<SimpleResponseModel> ValidationCredentials(LoginModel model)
-        {
-            throw new NotImplementedException();
+            var customerMapped = CustomerMapper.ToCustomerLoginEntity(model);
+
+            var responseRepository =await _authRepository.ValidationCredentialsAsync(customerMapped);
+
+            if (responseRepository.Status ==false)
+            {
+                response.Status = false;
+                response.Message = responseRepository.Message;
+
+                return response;
+            }
+
+            response.Status = true;
+            response.Message = "Login realizado com sucesso.";
+            response.Content = responseRepository.Content;
+            return response;
         }
     }
 }

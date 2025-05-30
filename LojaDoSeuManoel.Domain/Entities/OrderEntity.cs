@@ -21,6 +21,7 @@ namespace LojaDoSeuManoel.Domain.Entities
         public OrderStatusEnum OrderStatus { get; private set; }
         public int CustomerId { get; private set; }
         public CustomerEntity Costumer { get; private set; }
+        public BoxEntity Box { get; private set; }
         public decimal TotalValue { get; private set; }
 
 

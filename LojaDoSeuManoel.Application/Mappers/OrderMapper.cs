@@ -38,6 +38,7 @@ namespace LojaDoSeuManoel.Application.Mappers
                 CreatedAt=entity.CreatedAt, 
                 TotalValue=entity.TotalValue,
                 Status=entity.OrderStatus,
+                BoxType=entity.Box.BoxType,
                 CustomerName=entity.Costumer.Name,
                 CustomerEmail=entity.Costumer.Email
             };

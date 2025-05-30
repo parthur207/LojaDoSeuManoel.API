@@ -1,8 +1,9 @@
-﻿using LojaDoSeuManoel.Application.Interfaces.Repositories;
+﻿using LojaDoSeuManoel.Application.Repositories;
 using LojaDoSeuManoel.Domain.Entities;
 using LojaDoSeuManoel.Domain.Models.Generic;
 using LojaDoSeuManoel.Domain.Models.ResponsePattern;
-using LojaDoSeuManoel.Infrastruture.Persistense;
+using LojaDoSeuManoel.Infrastructure.Persistense;
+using LojaDoSeuManoel.Infrastruture.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

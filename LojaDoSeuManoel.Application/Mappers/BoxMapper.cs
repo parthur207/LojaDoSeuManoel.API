@@ -11,7 +11,7 @@ namespace LojaDoSeuManoel.Application.Mappers
     public class BoxMapper
     {
 
-        public BoxAdminDTO ToBoxDTO(BoxEntity entity)
+        public static BoxAdminDTO ToBoxDTO(BoxEntity entity)
         {
             return new BoxAdminDTO 
             { 

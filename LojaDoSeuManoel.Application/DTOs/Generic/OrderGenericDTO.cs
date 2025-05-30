@@ -15,6 +15,7 @@ namespace LojaDoSeuManoel.Application.DTOs.Generic
         public DateTime CreatedAt { get; set; }
         public decimal TotalValue { get; set; }
         public OrderStatusEnum Status { get; set; }
+        public BoxTypeEnum BoxType { get; set; } // 1, 2 ou 3
         public string CustomerName { get; set; }
         public string CustomerEmail { get; set; }
 

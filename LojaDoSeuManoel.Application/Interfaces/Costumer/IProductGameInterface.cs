@@ -1,5 +1,5 @@
 ﻿using LojaDoSeuManoel.Application.DTOs.Admin;
-using LojaDoSeuManoel.Application.DTOs.Customer;
+using LojaDoSeuManoel.Application.DTOs.Costumer;
 using LojaDoSeuManoel.Domain.Enuns;
 using LojaDoSeuManoel.Domain.Models.ResponsePattern;
 using System;
