@@ -570,6 +570,38 @@ namespace LojaDoSeuManoel.Infrastructure.Repositories
             }
 
         }
+
+        public async Task<SimpleResponseModel> DeleteProductGameAsync(int ProductGameId)
+        {
+            SimpleResponseModel response = new SimpleResponseModel();
+
+            try
+            {
+                var productGame = await _Dbcontext.ProductGame.FirstOrDefaultAsync(x => x.Id == ProductGameId);
+
+                if (productGame is null)
+                {
+                    response.Status = false;
+                    response.Message = $"Nenhum jogo com a Id '{ProductGameId}' foi encontrado.";
+                    return response;
+                }
+
+                productGame.SetToInactived();
+                _Dbcontext.ProductGame.Update(productGame);
+
+                await _Dbcontext.SaveChangesAsync();
+
+                response.Status = true;
+                response.Message = "Jogo excluído com sucesso.";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                return response;
+            }
+        }
     }
 }
 

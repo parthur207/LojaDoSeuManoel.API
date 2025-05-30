@@ -1,5 +1,4 @@
 ﻿using LojaDoSeuManoel.Application.DTOs.Admin;
-using LojaDoSeuManoel.Application.DTOs.Costumer;
 using LojaDoSeuManoel.Application.DTOs.Generic;
 using LojaDoSeuManoel.Application.Interfaces.Generic;
 using LojaDoSeuManoel.Domain.Models.ResponsePattern;

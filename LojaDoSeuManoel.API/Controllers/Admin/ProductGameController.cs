@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LojaDoSeuManoel.API.Controllers.Admin
 {
-    [Route("api/[controller]")]
+    [Route("api/Customer/productgame")]
     [ApiController]
     [Authorize(Roles = RolesTypes.Admin)]
     public class ProductGameController : ControllerBase
@@ -138,9 +138,9 @@ namespace LojaDoSeuManoel.API.Controllers.Admin
         }
 
         [HttpGet("topFiveSales")]
-        public async Task<IActionResult> GetTopFiveSales([FromQuery] ProductGameCategoryEnum category)
+        public async Task<IActionResult> GetTopFiveSales()
         {
-            var response = await _adminProductGameService.GetTopFiveSalesAdmin(category);
+            var response = await _adminProductGameService.GetTopFiveSalesAdmin();
 
             if (response.Status is false)
             {
@@ -169,23 +169,7 @@ namespace LojaDoSeuManoel.API.Controllers.Admin
             return Ok(response);
         }
 
-        [HttpPut("updateGame/{ProductGameId}")]
-        public async Task<IActionResult> UpdateGame([FromRoute] int ProductGameId, [FromBody] UpdateProductGameModel model)
-        {
-            if (model is null)
-            {
-                return BadRequest("Modelo de atualização inválido.");
-            }
 
-            var response = await _adminProductGameService.UpdateDataProductGameAdmin(ProductGameId, model);
-
-            if (response.Status is false)
-            {
-                return BadRequest(response);
-            }
-
-            return Ok(response);
-        }
 
         [HttpPut("updateGameStock/{ProductGameId}")]
         public async Task<IActionResult> UpdateGameStock([FromRoute] int ProductGameId, [FromQuery] int newStock)
@@ -205,10 +189,41 @@ namespace LojaDoSeuManoel.API.Controllers.Admin
             return Ok(response);
         }
 
-        [HttpPut("updateGameStatus/{ProductGameId}")]
-        public async Task<IActionResult> UpdateGameStatus([FromRoute] int ProductGameId, [FromQuery] ProductGameStatusEnum status)
+        [HttpPut("updateGame/AvaliableStatus/{ProductGameId}")]
+        public async Task<IActionResult> UpdateGameStatusToAvaliable([FromRoute] int ProductGameId)
         {
-            var response = await _adminProductGameService.UpdateStatusProductGameAdmin(ProductGameId, status);
+            var response = await _adminProductGameService.UpdateProductStatusToAvailableAdmin(ProductGameId);
+
+            if (response.Status is false)
+            {
+                return BadRequest(response);
+            }
+
+            return Ok(response);
+        }
+
+        [HttpPut("updateGameStatus/{ProductGameId}")]
+        public async Task<IActionResult> UpdateGameStatusToUnavaliable([FromRoute] int ProductGameId)
+        {
+            var response = await _adminProductGameService.UpdateProductStatusToAvailableAdmin(ProductGameId);
+
+            if (response.Status is false)
+            {
+                return BadRequest(response);
+            }
+
+            return Ok(response);
+        }
+
+        [HttpPut()]
+        public async Task<IActionResult> DeleteProductGame([FromQuery] int ProductGameId)
+        {
+            if (ProductGameId <=0)
+            {
+                return BadRequest("O Id do produto deve ser maior que 0.");
+            }
+
+            var response = await _adminProductGameService.DeleteProductGameAdmin(ProductGameId);
 
             if (response.Status is false)
             {

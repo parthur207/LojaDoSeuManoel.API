@@ -1,6 +1,14 @@
+using LojaDoSeuManoel.Application.Interfaces.Admin;
+using LojaDoSeuManoel.Application.Interfaces.Costumer;
+using LojaDoSeuManoel.Application.Interfaces.Generic;
+using LojaDoSeuManoel.Application.Repositories;
+using LojaDoSeuManoel.Application.Services.Admin;
+using LojaDoSeuManoel.Application.Services.Costumer;
+using LojaDoSeuManoel.Application.Services.Generic;
 using LojaDoSeuManoel.Infrastructure.Auth;
-using LojaDoSeuManoel.Infrastructure.ExternalService;
 using LojaDoSeuManoel.Infrastructure.Persistense;
+using LojaDoSeuManoel.Infrastructure.Repositories;
+using LojaDoSeuManoel.Infrastruture.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -15,7 +23,7 @@ namespace LojaDoSeuManoel.API.Main
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllers();
 
             builder.Services.AddSwaggerGen(c =>
             {
@@ -74,23 +82,27 @@ namespace LojaDoSeuManoel.API.Main
 
             builder.Services.AddDbContext<LojaDoSeuManoelDbContext>(options => options.UseSqlServer(cnn));*/
 
-            /*
-            builder.Services.AddScoped<IAdminProductInterface, AdminProductService>();
-            builder.Services.AddScoped<IAdminTransactionInterface, AdminTransactionService>();
-            builder.Services.AddScoped<IAdminUserInterface, AdminUserService>();
-            builder.Services.AddScoped<IProductInterface, ProductService>();
-            builder.Services.AddScoped<ITransactionInterface, TransactionService>();
-            builder.Services.AddScoped<IUserInterface, UserService>();
+            
+            builder.Services.AddScoped<IAdminBoxInterface, AdminBoxService>();
+            builder.Services.AddScoped<IAdminCustomerInterface, AdminCustomerService>();
+            builder.Services.AddScoped<IAdminOrderInterface, AdminOrderService>();
+            builder.Services.AddScoped<IAdminProductGameInterface, AdminProductGameService>();
+
+            builder.Services.AddScoped<IAuthGenericInterface, AuthGenericService>();
+
+            builder.Services.AddScoped<IOrderInterface, OrderService>();
+            builder.Services.AddScoped<IProductGameInterface, ProductGameService>();
 
 
-            builder.Services.AddScoped<IProductRepository, ProductRepository>();
-            builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
-            builder.Services.AddScoped<IUserRepository, UserRepository>();
-            */
+            builder.Services.AddScoped<IAuthRepository, AuthRespository>();
+            builder.Services.AddScoped<IBoxRepository, BoxRepository>();
+            builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+            builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<IProductGameRepository, ProductGameRepository>();
+
+
 
             builder.Services.AddScoped<IJwtInterface, JwtService>();
-
-            builder.Services.AddTransient<INotificationInterface, NotificationService>();
 
             //Autenticação JWT
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -122,6 +134,14 @@ namespace LojaDoSeuManoel.API.Main
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "LojaDoSeuManoel API v1");
                 });
             }
+
+            app.UseExceptionHandler("/error");
+            app.Map("/error", (HttpContext context) =>
+            {
+                var exception = context.Features.Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature>()?.Error;
+                return Results.Problem(detail: exception?.ToString(), statusCode: 500);
+            });
+
             app.UseHttpsRedirection();
 
             app.UseAuthentication();

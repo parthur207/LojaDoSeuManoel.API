@@ -1,5 +1,4 @@
-﻿using LojaDoSeuManoel.Application.DTOs.Costumer;
-using LojaDoSeuManoel.Application.DTOs.Generic;
+﻿using LojaDoSeuManoel.Application.DTOs.Generic;
 using LojaDoSeuManoel.Domain.Entities;
 using LojaDoSeuManoel.Domain.Models.Customer;
 using LojaDoSeuManoel.Domain.Models.Generic;

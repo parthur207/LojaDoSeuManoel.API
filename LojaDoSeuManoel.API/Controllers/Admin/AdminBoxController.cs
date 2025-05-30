@@ -32,8 +32,7 @@ namespace LojaDoSeuManoel.API.Controllers.Admin
 
             return Ok(response);
         }
-
-        [HttpGet("box/{type}")]
+        [HttpGet("box")]
         public async Task<IActionResult> GetBoxByType([FromQuery] BoxTypeEnum type)
         {
             var response= await _adminBoxService.GetBoxByTypeAdmin(type);

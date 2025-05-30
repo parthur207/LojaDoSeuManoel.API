@@ -2,13 +2,14 @@
 using LojaDoSeuManoel.Domain.Roles;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace LojaDoSeuManoel.API.Controllers.Customer
 {
     [ApiController]
     [Route("api/customerOrder")]
     [Authorize(Roles = RolesTypes.Customer)]
-    public class CustomerOrderController : Controller
+    public class CustomerOrderController : ControllerBase
     {
         private readonly IOrderInterface _orderService;
 
@@ -16,9 +17,14 @@ namespace LojaDoSeuManoel.API.Controllers.Customer
         {
             _orderService = orderService;
         }
+
+        [HttpGet("allOrders")]
         public async Task<IActionResult> GettAllOrders()
         {
-            var response = await _orderService.GetAllOrders();
+
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
+            var response = await _orderService.GetAllOrders(userId);
 
             if (response.Status is false)
             {

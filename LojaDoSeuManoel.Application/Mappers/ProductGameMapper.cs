@@ -44,7 +44,7 @@ namespace LojaDoSeuManoel.Application.Mappers
             };
         }
 
-        public ProductGameDTO ToProductGameDTO(ProductGameEntity entity)
+        public static ProductGameDTO ToProductGameDTO(ProductGameEntity entity)
         {
             return new ProductGameDTO
             { 

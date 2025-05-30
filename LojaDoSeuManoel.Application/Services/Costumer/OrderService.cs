@@ -28,22 +28,38 @@ namespace LojaDoSeuManoel.Application.Services.Costumer
                 response.Status = false;
                 return response;
             }
+
             foreach (var order in orders.Content)
             {
                 var OrderMapped = OrderMapper.ToOrderGenericDTO(order);
-                response.Content.Add();
+                response.Content.Add(OrderMapped);
             }
-           response.Content = 
-            }).ToList();
-          
-            };
-           
-            
+
+            response.Status = true;
+            return response;
         }
 
-        public Task<SimpleResponseModel> UpdateOrderToCancelled(int OrderId)
+        public async Task<SimpleResponseModel> UpdateOrderToCancelled(int OrderId)
         {
-            throw new NotImplementedException();
+            SimpleResponseModel response = new SimpleResponseModel();
+
+            if (OrderId <= 0)
+            {
+                response.Status = false;
+                response.Message = "O Id do pedido não pode ser menor ou igual a zero.";
+                return response;
+            }
+
+            var responseRepository = await _orderRepository.UpdateOrderToCancelledAsync(OrderId);
+
+            if (responseRepository.Status is false)
+            {
+                return responseRepository;
+            }
+
+            response.Status = true;
+            response.Message = "Pedido cancelado com sucesso.";
+            return response;
         }
     }
 }

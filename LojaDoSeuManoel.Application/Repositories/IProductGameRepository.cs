@@ -34,5 +34,6 @@ namespace LojaDoSeuManoel.Application.Repositories
         Task<SimpleResponseModel> UpdateProductStatusToAvailableAsync(int ProductGameId);
         Task<SimpleResponseModel> UpdateStockTotalAsync(int ProductGameID, int NewStock);
         Task<SimpleResponseModel> UpdateDimensionsProductGameAsync(int ProductGameID, decimal height, decimal width, decimal length);
+        Task<SimpleResponseModel> DeleteProductGameAsync(int ProductGameId);
     }
 }

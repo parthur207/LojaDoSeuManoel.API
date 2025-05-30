@@ -1,6 +1,8 @@
 ﻿using LojaDoSeuManoel.Application.DTOs.Generic;
 using LojaDoSeuManoel.Application.Interfaces.Admin;
 using LojaDoSeuManoel.Application.Interfaces.Costumer;
+using LojaDoSeuManoel.Application.Mappers;
+using LojaDoSeuManoel.Application.Repositories;
 using LojaDoSeuManoel.Domain.Models.ResponsePattern;
 using System;
 using System.Collections.Generic;
@@ -12,39 +14,206 @@ namespace LojaDoSeuManoel.Application.Services.Admin
 {
     public class AdminOrderService : IAdminOrderInterface
     {
-        public Task<ResponseModel<List<OrderGenericDTO>?>> GetAllOrdersAdmin()
+        private readonly IOrderRepository _orderRepository;
+
+        public async Task<ResponseModel<List<OrderGenericDTO>?>> GetAllOrdersAdmin()
         {
-            throw new NotImplementedException();
+            ResponseModel<List<OrderGenericDTO>?> response = new ResponseModel<List<OrderGenericDTO>?>();
+
+            var orders =await _orderRepository.GetAllOrdersAsync();
+
+            if (orders.Content is null || !orders.Content.Any())
+            {
+                response.Message = "Sem resultados para pedidos.";
+                response.Status = false;
+                return response;
+            }
+
+            foreach (var order in orders.Content)
+            {
+                var OrderMapped = OrderMapper.ToOrderGenericDTO(order);
+                response.Content.Add(OrderMapped);
+            }
+
+            response.Status = true;
+            return response;
         }
 
-        public Task<ResponseModel<List<OrderGenericDTO>?>> GetOrderByCustomerAdmin(string Email)
+        public async Task<ResponseModel<List<OrderGenericDTO>?>> GetOrderByCustomerAdmin(string Email)
         {
-            throw new NotImplementedException();
+            ResponseModel<List<OrderGenericDTO>?> response = new ResponseModel<List<OrderGenericDTO>?>();
+
+            if (string.IsNullOrEmpty(Email))
+            {
+                response.Status = false;
+                response.Message = "O email não pode ser nulo ou vazio.";
+                return response;
+            }
+
+            var orders = await _orderRepository.GetOrderByCustomerAsync(Email);
+
+            if (orders.Content is null || !orders.Content.Any())
+            {
+                response.Message = "Sem resultados para pedidos com o email informado.";
+                response.Status = false;
+                return response;
+            }
+
+            foreach (var order in orders.Content)
+            {
+                var OrderMapped = OrderMapper.ToOrderGenericDTO(order);
+                response.Content.Add(OrderMapped);
+            }
+
+            response.Status = true;
+            return response;
         }
 
-        public Task<ResponseModel<List<OrderGenericDTO>?>> GetOrderByIdAdmin(int OrderId)
+        public async Task<ResponseModel<List<OrderGenericDTO>?>> GetOrderByIdAdmin(int OrderId)
         {
-            throw new NotImplementedException();
+            ResponseModel<List<OrderGenericDTO>?> response = new ResponseModel<List<OrderGenericDTO>?>();
+
+            if (OrderId <= 0)
+            {
+                response.Status = false;
+                response.Message = "O ID do pedido deve ser maior que zero.";
+                return response;
+            }
+
+            var orders = await _orderRepository.GetOrderByIdAsync(OrderId);
+
+            if (orders.Content is null || !orders.Content.Any())
+            {
+                response.Message = "Sem resultados para pedidos com o ID informado.";
+                response.Status = false;
+                return response;
+            }
+
+            foreach (var order in orders.Content)
+            {
+                var OrderMapped = OrderMapper.ToOrderGenericDTO(order);
+                response.Content.Add(OrderMapped);
+            }
+
+            response.Status = true;
+            return response;
         }
 
-        public Task<SimpleResponseModel> UpdateStatusToDeliveredAdmin(int OrderId)
+        public async Task<SimpleResponseModel> UpdateStatusToDeliveredAdmin(int OrderId)
         {
-            throw new NotImplementedException();
+            SimpleResponseModel response = new SimpleResponseModel();
+
+            if (OrderId <= 0)
+            {
+                response.Status = false;
+                response.Message = "O ID do pedido deve ser maior que zero.";
+                return response;
+            }
+
+            var updateResult = await _orderRepository.UpdateStatusToDeliveredAsync(OrderId);
+
+            if (updateResult.Status is false)
+            {
+                return updateResult;
+            }
+
+            response.Status = true;
+            response.Message = "Pedido atualizado com sucesso.";
+            return response;
+            
         }
 
-        public Task<SimpleResponseModel> UpdateStatusToProcessingAdmin(int OrderId)
+        public async Task<SimpleResponseModel> UpdateStatusToProcessingAdmin(int OrderId)
         {
-            throw new NotImplementedException();
+            SimpleResponseModel response = new SimpleResponseModel();
+            
+            if (OrderId <= 0)
+            {
+                response.Status = false;
+                response.Message = "O ID do pedido deve ser maior que zero.";
+                return response;
+            }
+
+            var updateResult = await _orderRepository.UpdateStatusToProcessingAsync(OrderId);
+
+            if (updateResult.Status is false)
+            {
+                return updateResult;
+            }
+
+            response.Status = true;
+            response.Message = "Pedido atualizado com sucesso.";
+            return response;
         }
 
-        public Task<SimpleResponseModel> UpdateStatusToReturnedAdmin(int OrderId)
+        public async Task<SimpleResponseModel> UpdateStatusToReturnedAdmin(int OrderId)
         {
-            throw new NotImplementedException();
+            SimpleResponseModel response = new SimpleResponseModel();
+            
+            if (OrderId <= 0)
+            {
+                response.Status = false;
+                response.Message = "O ID do pedido deve ser maior que zero.";
+                return response;
+            }
+
+            var updateResult = await _orderRepository.UpdateStatusToReturnedAsync(OrderId);
+
+            if (updateResult.Status is false)
+            {
+                return updateResult;
+            }
+
+            response.Status = true;
+            response.Message = "Pedido atualizado com sucesso.";
+            return response;
+            
         }
 
-        public Task<SimpleResponseModel> UpdateStatusToShippedAdmin(int OrderId)
+        public async Task<SimpleResponseModel> UpdateStatusToShippedAdmin(int OrderId)
         {
-            throw new NotImplementedException();
+            SimpleResponseModel response = new SimpleResponseModel();
+                        
+            if (OrderId <= 0)
+            {
+                response.Status = false;
+                response.Message = "O ID do pedido deve ser maior que zero.";
+                return response;
+            }
+
+            var updateResult = await _orderRepository.UpdateStatusToShippedAsync(OrderId);
+
+            if (updateResult.Status is false)
+            {
+                return updateResult;
+            }
+
+            response.Status = true;
+            response.Message = "Pedido atualizado com sucesso.";
+            return response;
+        }
+
+        public async Task<SimpleResponseModel> UpdateOrderToCancelledAdmin(int OrderId)
+        {    
+            SimpleResponseModel response = new SimpleResponseModel();
+            
+            if (OrderId <= 0)
+            {
+                response.Status = false;
+                response.Message = "O ID do pedido deve ser maior que zero.";
+                return response;
+            }
+
+            var updateResult = await _orderRepository.UpdateOrderToCancelledAsync(OrderId);
+
+            if (updateResult.Status is false)
+            {
+                return updateResult;
+            }
+
+            response.Status = true;
+            response.Message = "Pedido cancelado com sucesso.";
+            return response;
         }
     }
 }

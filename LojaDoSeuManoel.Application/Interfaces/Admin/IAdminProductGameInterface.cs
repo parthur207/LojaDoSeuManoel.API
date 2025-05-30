@@ -19,13 +19,17 @@ namespace LojaDoSeuManoel.Application.Interfaces.Admin
         //Vendas
         Task<ResponseModel<List<ProductGameAdminDTO>?>> GetAllSalesAdmin();
         Task<ResponseModel<List<ProductGameAdminDTO>?>> GetAllSalesByCategoryAdmin(ProductGameCategoryEnum category);
-        Task<ResponseModel<List<ProductGameAdminDTO>?>> GetTopFiveSalesAdmin(ProductGameCategoryEnum category);
+        Task<ResponseModel<List<ProductGameAdminDTO>?>> GetTopFiveSalesAdmin();
 
 
         //Commands
         Task<ResponseModel<SimpleResponseModel>> CreateProductGameAdmin(CreateProductGameModel model);
-        Task<SimpleResponseModel> UpdateDataProductGameAdmin(int ProductGameID, UpdateProductGameModel model);
-        Task<ResponseModel<SimpleResponseModel>> UpdateStockTotalAdmin(int ProductGameID, int NewStock);
-        Task<ResponseModel<SimpleResponseModel>> UpdateStatusProductGameAdmin(int ProductGameID, ProductGameStatusEnum NewStatus);
+        Task<SimpleResponseModel> UpdateProductStatusToUnavailableAdmin(int ProductGameId);
+        Task<SimpleResponseModel> UpdateProductStatusToAvailableAdmin(int ProductGameId);
+        Task<SimpleResponseModel> UpdateStockTotalAdmin(int ProductGameID, int NewStock);
+        Task<SimpleResponseModel> UpdateDimensionsProductGame(int ProductGameID,  decimal n1, decimal n2, decimal n3);
+        Task<SimpleResponseModel> DeleteProductGameAdmin(int ProductGameID);
+
+
     }
 }

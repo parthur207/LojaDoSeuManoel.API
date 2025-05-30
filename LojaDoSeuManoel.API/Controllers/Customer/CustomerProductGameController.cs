@@ -34,7 +34,7 @@ namespace LojaDoSeuManoel.API.Controllers.Customer
         }
 
         [HttpGet("gameByData")]
-        public async Task<IActionResult> GetGameByName([FromQuery] string data)
+        public async Task<IActionResult> GetGameByNameOrDescription([FromQuery] string data)
         {
             var response = await _productGameService.GetProductGameByNameOrDescription(data);
 
