@@ -3,25 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaDoSeuManoel.API", "LojaDoSeuManoel.API\LojaDoSeuManoel.API.csproj", "{074233FD-A6C4-4E08-BC0E-6135319E77AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaDoSeuManoel.API", "LojaDoSeuManoel.API\LojaDoSeuManoel.API.csproj", "{074233FD-A6C4-4E08-BC0E-6135319E77AA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3CD5D061-D05F-41C9-AB65-CC6352E5093C} = {3CD5D061-D05F-41C9-AB65-CC6352E5093C}
 		{3FD5BA71-0E51-4E46-BE6D-AD8D32F95AA0} = {3FD5BA71-0E51-4E46-BE6D-AD8D32F95AA0}
 		{99E806B4-5EB7-49BD-BFC0-B2AB7FC0E26B} = {99E806B4-5EB7-49BD-BFC0-B2AB7FC0E26B}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaDoSeuManoel.Domain", "LojaDoSeuManoel.Domain\LojaDoSeuManoel.Domain.csproj", "{99E806B4-5EB7-49BD-BFC0-B2AB7FC0E26B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaDoSeuManoel.Domain", "LojaDoSeuManoel.Domain\LojaDoSeuManoel.Domain.csproj", "{99E806B4-5EB7-49BD-BFC0-B2AB7FC0E26B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaDoSeuManoel.Application", "LojaDoSeuManoel.Application\LojaDoSeuManoel.Application.csproj", "{3FD5BA71-0E51-4E46-BE6D-AD8D32F95AA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaDoSeuManoel.Application", "LojaDoSeuManoel.Application\LojaDoSeuManoel.Application.csproj", "{3FD5BA71-0E51-4E46-BE6D-AD8D32F95AA0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{99E806B4-5EB7-49BD-BFC0-B2AB7FC0E26B} = {99E806B4-5EB7-49BD-BFC0-B2AB7FC0E26B}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaDoSeuManoel.Infrastructure", "LojaDoSeuManoel.Infrastruture\LojaDoSeuManoel.Infrastructure.csproj", "{3CD5D061-D05F-41C9-AB65-CC6352E5093C}"
-	ProjectSection(ProjectDependencies) = postProject
-		{3FD5BA71-0E51-4E46-BE6D-AD8D32F95AA0} = {3FD5BA71-0E51-4E46-BE6D-AD8D32F95AA0}
-		{99E806B4-5EB7-49BD-BFC0-B2AB7FC0E26B} = {99E806B4-5EB7-49BD-BFC0-B2AB7FC0E26B}
-	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaDoSeuManoel.Tests.Unit", "LojaDoSeuManoel.Tests.Unit\LojaDoSeuManoel.Tests.Unit.csproj", "{E62BE370-993E-4E47-8975-C418E0AB047B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +43,10 @@ Global
 		{3CD5D061-D05F-41C9-AB65-CC6352E5093C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CD5D061-D05F-41C9-AB65-CC6352E5093C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CD5D061-D05F-41C9-AB65-CC6352E5093C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E62BE370-993E-4E47-8975-C418E0AB047B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E62BE370-993E-4E47-8975-C418E0AB047B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E62BE370-993E-4E47-8975-C418E0AB047B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E62BE370-993E-4E47-8975-C418E0AB047B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
