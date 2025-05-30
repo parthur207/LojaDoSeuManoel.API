@@ -12,8 +12,7 @@ namespace LojaDoSeuManoel.Application.Interfaces.Admin
     {
         //Querys
         Task<ResponseModel<List<CustomerGenericDTO>?>> GetAllCustomersAdmin();
-        Task<ResponseModel<CustomerGenericDTO?>> GetCustomerByEmailAdmin();
-
+        Task<ResponseModel<CustomerGenericDTO?>> GetCustomerByEmailAdmin(string Email);
 
         //Commands
         Task<SimpleResponseModel> InactivateCustomerAdmin(string Email);

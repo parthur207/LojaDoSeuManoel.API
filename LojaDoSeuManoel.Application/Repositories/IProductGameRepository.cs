@@ -25,7 +25,7 @@ namespace LojaDoSeuManoel.Application.Repositories
         //Vendas
         Task<ResponseModel<List<ProductGameEntity>?>> GetAllSalesAsync();
         Task<ResponseModel<List<ProductGameEntity>?>> GetAllSalesByCategoryAsync(ProductGameCategoryEnum category);
-        Task<ResponseModel<List<ProductGameEntity>?>> GetTopFiveSalesAsync(ProductGameCategoryEnum category);
+        Task<ResponseModel<List<ProductGameEntity>?>> GetTopFiveSalesAsync();
 
 
         //Commands

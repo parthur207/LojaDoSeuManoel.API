@@ -26,6 +26,6 @@ namespace LojaDoSeuManoel.Application.Interfaces.Admin
         Task<ResponseModel<SimpleResponseModel>> CreateProductGameAdmin(CreateProductGameModel model);
         Task<SimpleResponseModel> UpdateDataProductGameAdmin(int ProductGameID, UpdateProductGameModel model);
         Task<ResponseModel<SimpleResponseModel>> UpdateStockTotalAdmin(int ProductGameID, int NewStock);
-        Task<ResponseModel<SimpleResponseModel>> UpdateStatusProductGameAdmin(ProductGameStatusEnum NewStatus);
+        Task<ResponseModel<SimpleResponseModel>> UpdateStatusProductGameAdmin(int ProductGameID, ProductGameStatusEnum NewStatus);
     }
 }

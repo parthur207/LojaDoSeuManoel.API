@@ -268,7 +268,7 @@ namespace LojaDoSeuManoel.Infrastructure.Repositories
             try
             {
                 var inactiveGames = await _Dbcontext.ProductGame
-                    .Where(x => x.Status == ProductGameStatusEnum.Unavailable)
+                    .Where(x => x.Active == false || x.Status == ProductGameStatusEnum.Unavailable)
                     .ToListAsync();
 
                 if (inactiveGames is null || !inactiveGames.Any())
@@ -320,7 +320,7 @@ namespace LojaDoSeuManoel.Infrastructure.Repositories
             }
         }
 
-        public async Task<ResponseModel<List<ProductGameEntity>?>> GetTopFiveSalesByCategoryAsync(ProductGameCategoryEnum category)
+        public async Task<ResponseModel<List<ProductGameEntity>?>> GetTopFiveSalesAsync()
         {
 
             ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
@@ -328,7 +328,6 @@ namespace LojaDoSeuManoel.Infrastructure.Repositories
             try
             {
                 var topSales = await _Dbcontext.ProductGame
-                    .Where(x => x.Category == category && x.Status == ProductGameStatusEnum.Sold)
                     .OrderByDescending(x => x.Sales)
                     .Take(5)
                     .ToListAsync();

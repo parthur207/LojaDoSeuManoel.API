@@ -7,12 +7,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
+using System.Security.Claims;
 
 namespace LojaDoSeuManoel.API.Controllers.Admin
 {
     [Route("api/admin")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = RolesTypes.Admin)]
     public class AdminOrderController : ControllerBase
     {
 
@@ -25,38 +26,43 @@ namespace LojaDoSeuManoel.API.Controllers.Admin
             _orderService = orderService;
         }
 
-        [Authorize(Roles=RolesTypes.Admin)]
+        //Querys
+
         [HttpGet("allOrders")]
-        public async Task<IActionResult> GetAllOrders()
+        public async Task<IActionResult> GetAllOrdersAdmin()
         {
-            
-             var response= _orderService.GetOrders();
+            var response= await _adminOrderService.GetAllOrdersAdmin();
 
             if(response.Status is false)
             {
-                return NoContent(response);
+                return BadRequest(response);
             }
              
-
-
-            return Ok(response);*/
-            
+            return Ok(response);
         }
 
-        public async Task<IActionResult> GetOrderById(int id)
+        [HttpGet("orderCustomer")]
+        public async Task<IActionResult> GetOrderByIdAdmin([FromQuery] string email)
         {
-            /*
-            var response = _orderService.GetOrderById(id);
+            
+            var response = await _adminOrderService.GetOrderByCustomerAdmin(email);
             if (response.Status is false)
             {
-                return NoContent(response);
+                return BadRequest(response);
             }
-            return Ok(response);*/
+            return Ok(response);
         }
-
-        public async  Task<IActionResult> UpdateOrderStatus()
+        [HttpPut("")]
+        public async  Task<IActionResult> UpdateOrderStatusAdmin([FromQuery] string email)
         {
+            var response = await _adminOrderService.GetOrderByCustomerAdmin(email);
 
+            if (response.Status is false)
+            {
+                return BadRequest(response);
+            }
+
+            return Ok(response);
         }
     }
 }

@@ -18,10 +18,12 @@ namespace LojaDoSeuManoel.API.Controllers.Admin
             _adminBoxService = adminBoxService;
         }
 
+        //Querys
+
         [HttpGet("allBox")]
         public async Task<IActionResult> GetAllBoxes()
         {
-            var response=_adminBoxService.GetAllBoxesAdmin();
+            var response= await _adminBoxService.GetAllBoxesAdmin();
 
             if (response.Status is false)
             {
@@ -34,7 +36,7 @@ namespace LojaDoSeuManoel.API.Controllers.Admin
         [HttpGet("box/{type}")]
         public async Task<IActionResult> GetBoxByType([FromQuery] BoxTypeEnum type)
         {
-            var response=_adminBoxService.GetBoxByTypeAdmin(type);
+            var response= await _adminBoxService.GetBoxByTypeAdmin(type);
 
             if (response.Status is false)
             {

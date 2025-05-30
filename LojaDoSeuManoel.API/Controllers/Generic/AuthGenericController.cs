@@ -7,17 +7,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LojaDoSeuManoel.API.Controllers.Generic
 {
-    [Route("api/[controller]")]
+    [Route("api/authentication")]
     [ApiController]
-    public class ControllerGeneric : ControllerBase
+    public class AuthGenericController : ControllerBase
     {
         private readonly IAuthGenericInterface _authService;
         private readonly IJwtInterface _jwtInterface;
-        public ControllerGeneric(IAuthGenericInterface authService, IJwtInterface jwtInterface)
+        public AuthGenericController(IAuthGenericInterface authService, IJwtInterface jwtInterface)
         {
             _authService = authService;
-            _jwtInterface= jwtInterface;
-    }
+            _jwtInterface = jwtInterface;
+        }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
@@ -27,20 +27,20 @@ namespace LojaDoSeuManoel.API.Controllers.Generic
                 return BadRequest("Dados de login inválidos.");
             }
 
-            var response = _authService.ValidationCredentials(model);
+            var response = await _authService.ValidationCredentials(model);
 
             if (response.Status is false)
             {
                 return Unauthorized(response);
             }
-            var userDatas = await _authService.GetUserDatas(model.Email);
+            var userDatas = await _authService.GetUserData(model.Email);
 
-            if(userDatas.Status is false)
+            if (userDatas.Status is false)
             {
                 return Unauthorized(userDatas);
             }
 
-            var token = _jwtInterface.GenerateToken(userDatas.Content.Item1, userDatas.Content.Item2);
+            var token = _jwtInterface.GenerateToken(userDatas.Content, model.Email);
 
             return Ok(new { Response = "Login efetuado com sucesso.", Token = token });
         }
@@ -59,8 +59,7 @@ namespace LojaDoSeuManoel.API.Controllers.Generic
             {
                 return BadRequest(response);
             }
-
-
             return Ok(response);
+        }
     }
 }

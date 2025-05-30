@@ -14,5 +14,6 @@ namespace LojaDoSeuManoel.Application.Interfaces.Generic
         //Commands
         Task<SimpleResponseModel> CreateNewCustomer(CreateCustomerModel model);
         Task<ResponseModel<object?>> ValidationCredentials(LoginModel model);
+        Task<ResponseModel<int>> GetUserData(string Email);
     }
 }

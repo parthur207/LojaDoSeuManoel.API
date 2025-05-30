@@ -26,10 +26,10 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
             SimpleResponseModel response = new SimpleResponseModel();
             try
             {
-                if(entity is null)
+                if (entity is null)
                 {
 
-                    response.Status= false;
+                    response.Status = false;
                     response.Message = "Erro. Dados vazios.";
                     return response;
                 }
@@ -70,13 +70,51 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
                     return response;
                 }
 
-                var UserId= await _context.Customer
+                var UserId = await _context.Customer
                     .Where(x => x.Email == login.Email && x.Password == login.Password)
                     .Select(x => x.Id)
                     .FirstOrDefaultAsync();
 
                 response.Content = UserId;
-                response.Status= true;
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                return response;
+            }
+        }
+
+        public async Task<ResponseModel<int>> GetUserDataAsync(string Email)
+        {
+            ResponseModel<int> response = new ResponseModel<int>();
+            try
+            {
+                if (string.IsNullOrEmpty(Email))
+                {
+                    response.Status = false;
+                    response.Message = "Email inválido.";
+                    return response;
+                }
+
+                var userExists = await _context.Customer.AnyAsync(x => x.Email == Email);
+
+                if (userExists is false)
+                {
+                    response.Status = false;
+                    response.Message = "Usuário não encontrado.";
+                    return response;
+                }
+
+                var userId = await _context.Customer
+                   .Where(x => x.Email == Email)
+                   .Select(x => (int)x.Id)//casting
+                   .FirstOrDefaultAsync();
+
+                response.Content = userId;
+                response.Status = true;
                 return response;
             }
             catch (Exception ex)
@@ -88,3 +126,4 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
         }
     }
 }
+

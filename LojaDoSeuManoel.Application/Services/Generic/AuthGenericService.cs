@@ -69,5 +69,29 @@ namespace LojaDoSeuManoel.Application.Services.Generic
             response.Content = responseRepository.Content;
             return response;
         }
+
+        public async Task<ResponseModel<int>> GetUserData(string Email)
+        {
+            ResponseModel<int> response = new ResponseModel<int>();
+            if(Email is null)
+            {
+                response.Status = false;
+                response.Message = "Erro. Email Nulo.";
+                return response;
+            }
+
+            var responseRepository = await _authRepository.GetUserDataAsync(Email);
+
+            if (responseRepository.Status is false)
+            {
+
+                response.Status = false;    
+                response.Message = responseRepository.Message;
+                return response;
+            }
+            response.Status = true;
+            response.Content = responseRepository.Content;
+            return response;
+        }
     }
 }

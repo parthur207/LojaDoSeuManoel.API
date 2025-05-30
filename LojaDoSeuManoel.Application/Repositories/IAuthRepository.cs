@@ -14,5 +14,8 @@ namespace LojaDoSeuManoel.Application.Repositories
         //Commands
         Task<SimpleResponseModel> CreateNewCustomerAsync(CustomerEntity entity);
         Task<ResponseModel<int>> ValidationCredentialsAsync(CustomerEntity entity);
+
+        //Query
+        Task<ResponseModel<int>> GetUserDataAsync(string Email);
     }
 }

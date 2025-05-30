@@ -1,14 +1,18 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using LojaDoSeuManoel.Application.Interfaces.Costumer;
+using LojaDoSeuManoel.Domain.Roles;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LojaDoSeuManoel.API.Controllers.Customer
 {
-    [Authorize]
     [ApiController]
     [Route("api/customerOrder")]
+    [Authorize(Roles = RolesTypes.Customer)]
     public class CustomerOrderController : Controller
     {
-        public IActionResult Index()
+        private readonly IOrderInterface _orderService;
+
+        public async Task<IActionResult> ()
         {
             return View();
         }

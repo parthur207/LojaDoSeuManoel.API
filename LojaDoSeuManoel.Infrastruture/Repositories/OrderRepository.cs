@@ -130,7 +130,7 @@ namespace LojaDoSeuManoel.Infrastructure.Repositories
                 response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
                 return response;
             }
-        }}
+        }
 
 
         public async Task<SimpleResponseModel> UpdateOrderToCancelledAsync(int OrderId)

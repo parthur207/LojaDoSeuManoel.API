@@ -11,6 +11,4 @@ namespace LojaDoSeuManoel.Application.Interfaces.Costumer
 
         Task<SimpleResponseModel> UpdateOrderToCancelled(int OrderId);
     }
-
-}
 }
