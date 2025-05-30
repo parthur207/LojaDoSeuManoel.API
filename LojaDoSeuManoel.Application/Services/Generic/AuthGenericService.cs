@@ -16,6 +16,10 @@ namespace LojaDoSeuManoel.Application.Services.Generic
     public class AuthGenericService : IAuthGenericInterface
     {
         private readonly IAuthRepository _authRepository;
+        public AuthGenericService(IAuthRepository authRepository)
+        {
+            _authRepository = authRepository;
+        }
 
         public async Task<SimpleResponseModel> CreateNewCustomer(CreateCustomerModel model)
         {

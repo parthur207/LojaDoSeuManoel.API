@@ -14,6 +14,10 @@ namespace LojaDoSeuManoel.Application.Services.Costumer
     public class OrderService : IOrderInterface
     {
         private readonly IOrderRepository _orderRepository;
+        public OrderService(IOrderRepository orderRepository)
+        {
+            _orderRepository = orderRepository;
+        }
 
         public async Task<ResponseModel<List<OrderGenericDTO>?>> GetAllOrders(int CustomerId)
         {

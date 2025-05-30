@@ -15,6 +15,10 @@ namespace LojaDoSeuManoel.Application.Services.Admin
     public class AdminOrderService : IAdminOrderInterface
     {
         private readonly IOrderRepository _orderRepository;
+        public AdminOrderService(IOrderRepository orderRepository)
+        {
+            _orderRepository = orderRepository;
+        }
 
         public async Task<ResponseModel<List<OrderGenericDTO>?>> GetAllOrdersAdmin()
         {

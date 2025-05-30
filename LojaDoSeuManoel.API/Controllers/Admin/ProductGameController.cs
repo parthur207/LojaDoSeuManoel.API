@@ -205,7 +205,7 @@ namespace LojaDoSeuManoel.API.Controllers.Admin
         [HttpPut("updateGameStatus/{ProductGameId}")]
         public async Task<IActionResult> UpdateGameStatusToUnavaliable([FromRoute] int ProductGameId)
         {
-            var response = await _adminProductGameService.UpdateProductStatusToAvailableAdmin(ProductGameId);
+            var response = await _adminProductGameService.UpdateProductStatusToUnavailableAdmin(ProductGameId);
 
             if (response.Status is false)
             {
