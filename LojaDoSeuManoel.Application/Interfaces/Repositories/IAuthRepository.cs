@@ -1,4 +1,4 @@
-﻿using LojaDoSeuManoel.Domain.Models.Customer;
+﻿using LojaDoSeuManoel.Domain.Entities;
 using LojaDoSeuManoel.Domain.Models.Generic;
 using LojaDoSeuManoel.Domain.Models.ResponsePattern;
 using System;
@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Application.Interfaces.Generic
+namespace LojaDoSeuManoel.Application.Interfaces.Repositories
 {
-    public interface IAuthGenericInterface
+    public interface IAuthRepository
     {
         //Commands
-        Task<SimpleResponseModel> CreateNewCustomer(CreateCustomerModel model);
+        Task<SimpleResponseModel> CreateNewCustomerAsync(CustomerEntity model);
         Task<SimpleResponseModel> ValidationCredentials(LoginModel model);
         Task<ResponseModel<(int, string)>> GetUserDatas(string email);
     }

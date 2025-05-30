@@ -12,6 +12,7 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories.InterfacesRepository
         Task<ResponseModel<List<OrderEntity>?>> GetOrderByIdAsync(int OrderId);
 
         //Commands
+        Task<SimpleResponseModel> CreateOrderAsync(OrderEntity Entity);
         Task<SimpleResponseModel> UpdateStatusToProcessingAsync(int OrderId);
         Task<SimpleResponseModel> UpdateStatusToShippedAsync(int OrderId);
         Task<SimpleResponseModel> UpdateStatusToDeliveredAsync(int OrderId);

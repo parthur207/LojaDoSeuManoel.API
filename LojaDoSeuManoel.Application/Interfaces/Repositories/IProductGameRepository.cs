@@ -30,8 +30,9 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories.InterfacesRepository
 
         //Commands
         Task<SimpleResponseModel> CreateProductGameAsync(ProductGameEntity model);
-        Task<SimpleResponseModel> UpdateDataProductGameAsync(int ProductGameID, ProductGameEntity model);
+        Task<SimpleResponseModel> UpdateProductStatusToUnavailableAsync(int ProductGameId);
+        Task<SimpleResponseModel> UpdateProductStatusToAvailableAsync(int ProductGameId);
         Task<SimpleResponseModel> UpdateStockTotalAsync(int ProductGameID, int NewStock);
-        Task<SimpleResponseModel> UpdateStatusProductGameAsync(ProductGameStatusEnum NewStatus);
+        Task<SimpleResponseModel> UpdateDimensionsProductGameAsync(int ProductGameID, decimal height, decimal width, decimal length)
     }
 }

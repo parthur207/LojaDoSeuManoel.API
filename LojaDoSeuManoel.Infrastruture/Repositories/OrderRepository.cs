@@ -104,6 +104,35 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
             }
         }
 
+        public async Task<SimpleResponseModel> CreateOrderAsync(OrderEntity Entity)
+        {
+
+           SimpleResponseModel response = new SimpleResponseModel();
+            try
+            {
+                if (Entity is null)
+                {
+                    response.Status = false;
+                    response.Message = "Pedido inválido.";
+                    return response;
+                }
+
+                await _dbContext.Order.AddAsync(Entity);
+                await _dbContext.SaveChangesAsync();
+
+                response.Status = true;
+                response.Message = $"Pedido de Id '{Entity.Id}' criado com sucesso.";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                return response;
+            }
+        }}
+
+
         public async Task<SimpleResponseModel> UpdateOrderToCancelledAsync(int OrderId)
         {
             SimpleResponseModel response = new SimpleResponseModel();

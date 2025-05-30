@@ -82,7 +82,7 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetAllSalesAsync()
         {
-            
+
             ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
 
             try
@@ -112,7 +112,7 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetAllSalesByCategoryAsync(ProductGameCategoryEnum category)
         {
-            
+
             ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
 
             try
@@ -142,7 +142,7 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameByCategoryAsync(ProductGameCategoryEnum category)
         {
-            
+
             ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
 
             try
@@ -172,7 +172,7 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameByNameOrDescriptionAsync(string ItemOfQuery)
         {
-            
+
             ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
 
             try
@@ -202,7 +202,7 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameByPriceAsync(decimal Price)
         {
-            
+
             ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
 
             try
@@ -232,7 +232,7 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameByStatusAsync(ProductGameStatusEnum status)
         {
-            
+
             ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
 
             try
@@ -262,7 +262,7 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameInactiveAsync()
         {
-           
+
             ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
 
             try
@@ -292,13 +292,13 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetProductGameNoStockAsync()
         {
-            
+
             ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
 
             try
             {
                 var noStockGames = await _Dbcontext.ProductGame
-                    .Where(x => x.Stock <= 0)
+                    .Where(x => x.Stock == 0)
                     .ToListAsync();
 
                 if (noStockGames is null || !noStockGames.Any())
@@ -322,7 +322,7 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
 
         public async Task<ResponseModel<List<ProductGameEntity>?>> GetTopFiveSalesAsync(ProductGameCategoryEnum category)
         {
-            
+
             ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();
 
             try
@@ -367,7 +367,7 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
                     return response;
                 }
 
-                existingGame.SetProductName(Name);   
+                existingGame.SetProductName(Name);
                 _Dbcontext.ProductGame.Update(existingGame);
                 await _Dbcontext.SaveChangesAsync();
 
@@ -385,12 +385,12 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
 
         public async Task<SimpleResponseModel> UpdateDescriptionProductGameAsync(int ProductGameID, string NewDescription)
         {
-           
+
             SimpleResponseModel response = new SimpleResponseModel();
             try
             {
-                var existingGame = await _Dbcontext.ProductGame.FirstOrDefaultAsync(x=>x.Id==ProductGameID);
-               
+                var existingGame = await _Dbcontext.ProductGame.FirstOrDefaultAsync(x => x.Id == ProductGameID);
+
                 if (existingGame is null)
                 {
                     response.Message = "Jogo não encontrado.";
@@ -413,7 +413,7 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
                 return response;
             }
         }
-     
+
         public async Task<SimpleResponseModel> UpdatePriceProductGameAsync(int ProductGameID, decimal NewPrice)
         {
 
@@ -451,7 +451,7 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
             try
             {
                 var existingGame = await _Dbcontext.ProductGame.FirstOrDefaultAsync(x => x.Id == ProductGameID);
-                
+
                 if (existingGame is null)
                 {
                     response.Message = "Jogo não encontrado.";
@@ -464,38 +464,6 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
                 await _Dbcontext.SaveChangesAsync();
 
                 response.Message = "Dimensões do jogo atualizadas com sucesso.";
-                response.Status = true;
-                return response;
-            }
-            catch (Exception ex)
-            {
-                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
-                response.Status = false;
-                return response;
-            }
-        }
-
-        public async Task<SimpleResponseModel> UpdateStatusProductGameAsync(ProductGameStatusEnum NewStatus, int ProductGameID)
-        {
-            
-            SimpleResponseModel response = new SimpleResponseModel();
-            try
-            {
-                var productGame = await _Dbcontext.ProductGame.FirstOrDefaultAsync(x=>x.Id== ProductGameID);
-
-                if (productGame is null)
-                {
-                    response.Message = "Nenhum jogo encontrado .";
-                    response.Status = false;
-                    return response;
-                }
-
-               
-                productGame.Set
-                _Dbcontext.ProductGame.UpdateRange(productGames);
-                await _Dbcontext.SaveChangesAsync();
-
-                response.Message = "Status dos jogos atualizados com sucesso.";
                 response.Status = true;
                 return response;
             }
@@ -520,7 +488,7 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
                     return response;
                 }
 
-                var Product = await _Dbcontext.ProductGame.FirstOrDefaultAsync(X=>X.Id==ProductGameID);
+                var Product = await _Dbcontext.ProductGame.FirstOrDefaultAsync(X => X.Id == ProductGameID);
 
                 if (Product is null)
                 {
@@ -529,13 +497,14 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
                     return response;
                 }
 
-                Product.SetProductStatusToReserved(); ;
-              
+                Product.IncreaseStock(NewStock);
+                _Dbcontext.ProductGame.Update(Product);
+                await _Dbcontext.SaveChangesAsync();
+                response.Message = "Estoque atualizado com sucesso.";
+                response.Status = true;
 
                 return response;
-
             }
-
             catch (Exception ex)
             {
                 response.Status = false;
@@ -543,5 +512,65 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
                 return response;
             }
         }
+
+        public async Task<SimpleResponseModel> UpdateProductStatusToAvailableAsync(int ProductGameId)
+        {
+            SimpleResponseModel response = new SimpleResponseModel();
+            try
+            {
+                var productGame = await _Dbcontext.ProductGame.FirstOrDefaultAsync(x => x.Id == ProductGameId);
+
+                if (productGame is null)
+                {
+                    response.Status = false;
+                    response.Message = $"Nenhum jogo com a Id '{ProductGameId}' foi encontrado.";
+                    return response;
+                }
+
+
+                productGame.SetProductStatusToAvailable();
+                _Dbcontext.ProductGame.Update(productGame);
+                await _Dbcontext.SaveChangesAsync();
+
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                return response;
+            }
+        }
+        public async Task<SimpleResponseModel> UpdateProductStatusToUnavailableAsync(int ProductGameId)
+        {
+            SimpleResponseModel response = new SimpleResponseModel();
+            try
+            {
+                var productGame = await _Dbcontext.ProductGame.FirstOrDefaultAsync(x => x.Id == ProductGameId);
+
+                if (productGame is null)
+                {
+                    response.Status = false;
+                    response.Message = $"Nenhum jogo com a Id '{ProductGameId}' foi encontrado.";
+                    return response;
+                }
+
+                productGame.SetProductStatusToUnavailable();
+                _Dbcontext.ProductGame.Update(productGame);
+                await _Dbcontext.SaveChangesAsync();
+
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                return response;
+            }
+
+        }
     }
 }
+

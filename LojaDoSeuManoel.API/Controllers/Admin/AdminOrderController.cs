@@ -1,19 +1,35 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using LojaDoSeuManoel.Application.Interfaces.Admin;
+using LojaDoSeuManoel.Application.Interfaces.Costumer;
+using LojaDoSeuManoel.Application.Services.Admin;
+using LojaDoSeuManoel.Application.Services.Costumer;
+using LojaDoSeuManoel.Domain.Roles;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
 
 namespace LojaDoSeuManoel.API.Controllers.Admin
 {
-    [Route("api/admin/Order")]
+    [Route("api/admin")]
     [ApiController]
     [Authorize]
     public class AdminOrderController : ControllerBase
     {
 
-        public async Task<IActionResult> GetOrders()
+        private readonly IOrderInterface _orderService;
+
+        private readonly IAdminOrderInterface _adminOrderService;
+        public AdminOrderController(IOrderInterface orderService, IAdminOrderInterface adminOrderService)
         {
-            /*
+            _adminOrderService = adminOrderService;
+            _orderService = orderService;
+        }
+
+        [Authorize(Roles=RolesTypes.Admin)]
+        [HttpGet("allOrders")]
+        public async Task<IActionResult> GetAllOrders()
+        {
+            
              var response= _orderService.GetOrders();
 
             if(response.Status is false)
