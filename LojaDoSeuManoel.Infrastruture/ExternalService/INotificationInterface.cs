@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Infrastruture.ExternalService
+namespace LojaDoSeuManoel.Infrastructure.ExternalService
 {
     public interface INotificationInterface
     {

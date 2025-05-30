@@ -1,7 +1,7 @@
 ﻿using LojaDoSeuManoel.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace LojaDoSeuManoel.Infrastruture.Persistense
+namespace LojaDoSeuManoel.Infrastructure.Persistense
 {
     public class LojaDoSeuManoelDbContext : DbContext
     {

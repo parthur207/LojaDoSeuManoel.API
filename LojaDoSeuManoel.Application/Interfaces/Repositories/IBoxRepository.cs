@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Infrastruture.Repositories.InterfacesRepository
+namespace LojaDoSeuManoel.Application.Interfaces.Repositories
 {
     public interface IBoxRepository
     {

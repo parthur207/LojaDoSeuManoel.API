@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Application.DTOs.Costumer
+namespace LojaDoSeuManoel.Application.DTOs.Customer
 {
     public class ProductGameDTO
     {

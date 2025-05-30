@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LojaDoSeuManoel.API.Controllers.User
+namespace LojaDoSeuManoel.API.Controllers.Customer
 {
-    [Route("api/[controller]")]
+    [Route("api/customerProductGame")]
     [ApiController]
     public class CustomerProductGameController : ControllerBase
     {
