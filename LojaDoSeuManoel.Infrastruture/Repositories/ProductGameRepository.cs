@@ -352,13 +352,14 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
             }
         }
 
-        public async Task<SimpleResponseModel> UpdateDataProductGameAsync(int ProductGameID, ProductGameEntity Entity)
+        public async Task<SimpleResponseModel> UpdateNameProductGameAsync(int ProductGameID, string Name)
         {
-           
+
             SimpleResponseModel response = new SimpleResponseModel();
             try
             {
-                var existingGame = await _Dbcontext.ProductGame.FirstOrDefaultAsync(x=>x.Id==ProductGameID);
+                var existingGame = await _Dbcontext.ProductGame.FirstOrDefaultAsync(x => x.Id == ProductGameID);
+
                 if (existingGame is null)
                 {
                     response.Message = "Jogo não encontrado.";
@@ -366,17 +367,103 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
                     return response;
                 }
 
-                existingGame.Name = Entity.Name;
-                existingGame.Description = Entity.Description;
-                existingGame.Price = Entity.Price;
-                existingGame.Stock = Entity.Stock;
-                existingGame.Category = Entity.Category;
-                existingGame.Status = Entity.Status;
-
+                existingGame.SetProductName(Name);   
                 _Dbcontext.ProductGame.Update(existingGame);
                 await _Dbcontext.SaveChangesAsync();
 
-                response.Message = "Dados do jogo atualizados com sucesso.";
+                response.Message = "Nome do jogo atualizado com sucesso.";
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                response.Status = false;
+                return response;
+            }
+        }
+
+        public async Task<SimpleResponseModel> UpdateDescriptionProductGameAsync(int ProductGameID, string NewDescription)
+        {
+           
+            SimpleResponseModel response = new SimpleResponseModel();
+            try
+            {
+                var existingGame = await _Dbcontext.ProductGame.FirstOrDefaultAsync(x=>x.Id==ProductGameID);
+               
+                if (existingGame is null)
+                {
+                    response.Message = "Jogo não encontrado.";
+                    response.Status = false;
+                    return response;
+                }
+
+                existingGame.SetProductDescription(NewDescription);
+                _Dbcontext.ProductGame.Update(existingGame);
+                await _Dbcontext.SaveChangesAsync();
+
+                response.Message = "Descrição do jogo atualizados com sucesso.";
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                response.Status = false;
+                return response;
+            }
+        }
+     
+        public async Task<SimpleResponseModel> UpdatePriceProductGameAsync(int ProductGameID, decimal NewPrice)
+        {
+
+            SimpleResponseModel response = new SimpleResponseModel();
+            try
+            {
+                var existingGame = await _Dbcontext.ProductGame.FirstOrDefaultAsync(x => x.Id == ProductGameID);
+                if (existingGame is null)
+                {
+                    response.Message = "Jogo não encontrado.";
+                    response.Status = false;
+                    return response;
+                }
+
+                existingGame.SetProductPrice(NewPrice);
+                _Dbcontext.ProductGame.Update(existingGame);
+                await _Dbcontext.SaveChangesAsync();
+
+                response.Message = "Preço do jogo atualizado com sucesso.";
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                response.Status = false;
+                return response;
+            }
+        }
+
+        public async Task<SimpleResponseModel> UpdateDimensionsProductGameAsync(int ProductGameID, decimal height, decimal width, decimal length)
+        {
+
+            SimpleResponseModel response = new SimpleResponseModel();
+            try
+            {
+                var existingGame = await _Dbcontext.ProductGame.FirstOrDefaultAsync(x => x.Id == ProductGameID);
+                
+                if (existingGame is null)
+                {
+                    response.Message = "Jogo não encontrado.";
+                    response.Status = false;
+                    return response;
+                }
+
+                existingGame.SetDimensionsOfProductGame(height, width, length);
+                _Dbcontext.ProductGame.Update(existingGame);
+                await _Dbcontext.SaveChangesAsync();
+
+                response.Message = "Dimensões do jogo atualizadas com sucesso.";
                 response.Status = true;
                 return response;
             }
@@ -403,11 +490,8 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
                     return response;
                 }
 
-                foreach (var game in productGames)
-                {
-                    game.Status = NewStatus;
-                }
-
+               
+                productGame.Set
                 _Dbcontext.ProductGame.UpdateRange(productGames);
                 await _Dbcontext.SaveChangesAsync();
 
@@ -425,7 +509,39 @@ namespace LojaDoSeuManoel.Infrastruture.Repositories
 
         public async Task<SimpleResponseModel> UpdateStockTotalAsync(int ProductGameID, int NewStock)
         {
-            throw new NotImplementedException();
+
+            SimpleResponseModel response = new SimpleResponseModel();
+            try
+            {
+                if (NewStock < 0)
+                {
+                    response.Message = "O estoque não pode ser negativo.";
+                    response.Status = false;
+                    return response;
+                }
+
+                var Product = await _Dbcontext.ProductGame.FirstOrDefaultAsync(X=>X.Id==ProductGameID);
+
+                if (Product is null)
+                {
+                    response.Status = false;
+                    response.Message = $"Produto (Jogo) com o Id ({ProductGameID}) não existe.";
+                    return response;
+                }
+
+                Product.SetProductStatusToReserved(); ;
+              
+
+                return response;
+
+            }
+
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}.";
+                return response;
+            }
         }
     }
 }

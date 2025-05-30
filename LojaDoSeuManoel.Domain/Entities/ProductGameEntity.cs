@@ -80,6 +80,12 @@ namespace LojaDoSeuManoel.Domain.Entities
             Price = newPrice;
         }
 
+        public void SetDimensionsOfProductGame(decimal height, decimal width, decimal length)
+        {
+            Height = height;
+            Width = width;
+            Length = length;
+        }
 
         public void IncreaseSales(int n)
         {
@@ -96,6 +102,11 @@ namespace LojaDoSeuManoel.Domain.Entities
             if (Stock > 0)
             {
                 Stock -= n;
+              
+                if (Stock < 0)
+                {
+                    Stock = 0;
+                }
 
                 if (Stock == 0)
                 {
