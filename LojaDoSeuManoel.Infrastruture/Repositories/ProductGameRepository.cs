@@ -1,5 +1,5 @@
 ﻿using LojaDoSeuManoel.Application.DTOs.Admin;
-using LojaDoSeuManoel.Application.Interfaces.Repositories;
+using LojaDoSeuManoel.Application.Repositories;
 using LojaDoSeuManoel.Domain.Entities;
 using LojaDoSeuManoel.Domain.Enuns;
 using LojaDoSeuManoel.Domain.Models.Admin;
@@ -320,7 +320,7 @@ namespace LojaDoSeuManoel.Infrastructure.Repositories
             }
         }
 
-        public async Task<ResponseModel<List<ProductGameEntity>?>> GetTopFiveSalesAsync(ProductGameCategoryEnum category)
+        public async Task<ResponseModel<List<ProductGameEntity>?>> GetTopFiveSalesByCategoryAsync(ProductGameCategoryEnum category)
         {
 
             ResponseModel<List<ProductGameEntity>?> response = new ResponseModel<List<ProductGameEntity>?>();

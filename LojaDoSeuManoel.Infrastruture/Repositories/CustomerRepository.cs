@@ -1,5 +1,5 @@
 ﻿using LojaDoSeuManoel.Application.DTOs.Generic;
-using LojaDoSeuManoel.Application.Interfaces.Repositories;
+using LojaDoSeuManoel.Application.Repositories;
 using LojaDoSeuManoel.Domain.Entities;
 using LojaDoSeuManoel.Domain.Models.ResponsePattern;
 using LojaDoSeuManoel.Infrastructure.Persistense;

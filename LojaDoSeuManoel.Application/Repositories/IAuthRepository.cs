@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaDoSeuManoel.Application.Interfaces.Repositories
+namespace LojaDoSeuManoel.Application.Repositories
 {
     public interface IAuthRepository
     {
