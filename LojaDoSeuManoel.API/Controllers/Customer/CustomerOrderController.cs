@@ -12,6 +12,10 @@ namespace LojaDoSeuManoel.API.Controllers.Customer
     {
         private readonly IOrderInterface _orderService;
 
+        public CustomerOrderController(IOrderInterface orderService)
+        {
+            _orderService = orderService;
+        }
         public async Task<IActionResult> ()
         {
             return View();
