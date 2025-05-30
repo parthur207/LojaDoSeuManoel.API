@@ -52,10 +52,24 @@ namespace LojaDoSeuManoel.API.Controllers.Admin
             }
             return Ok(response);
         }
-        [HttpPut("")]
-        public async  Task<IActionResult> UpdateOrderStatusAdmin([FromQuery] string email)
+        [HttpGet("orderByEmail")]
+        public async  Task<IActionResult> GetOrderByEmailCustomerAdmin([FromQuery] string email)
         {
             var response = await _adminOrderService.GetOrderByCustomerAdmin(email);
+
+            if (response.Status is false)
+            {
+                return BadRequest(response);
+            }
+
+            return Ok(response);
+        }
+
+        //Commands
+        [HttpPut("updateStatusToCancelled")]
+        public async Task<IActionResult> UpdateOrderToCancelledAdmin([FromQuery] int orderId)
+        {
+            var response = await _adminOrderService.UpdateOrderToCancelledAdmin(orderId);
 
             if (response.Status is false)
             {

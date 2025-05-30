@@ -16,9 +16,17 @@ namespace LojaDoSeuManoel.API.Controllers.Customer
         {
             _orderService = orderService;
         }
-        public async Task<IActionResult> ()
+        public async Task<IActionResult> GettAllOrders()
         {
-            return View();
+            var response = await _orderService.GetAllOrders();
+
+            if (response.Status is false)
+            {
+                return BadRequest(response);
+            }
+
+            return Ok(response);
+            
         }
     }
 }

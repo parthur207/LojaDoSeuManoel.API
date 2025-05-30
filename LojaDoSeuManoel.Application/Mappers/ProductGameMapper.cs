@@ -15,18 +15,18 @@ namespace LojaDoSeuManoel.Application.Mappers
 
         //Model para entity
 
-        public ProductGameEntity ToCreateProductGameEntity(CreateProductGameModel model)
+        public static ProductGameEntity ToCreateProductGameEntity(CreateProductGameModel model)
         {
             return new ProductGameEntity(model.Name, model.Description,model.Price, model.Height, model.Width, model.Length, model.Stock, model.Category, model.ImageUrl);
         }
 
-        public ProductGameEntity ToUpdateProductGameEntity(UpdateProductGameModel model)
+        public static ProductGameEntity ToUpdateProductGameEntity(UpdateProductGameModel model)
         {
             return new ProductGameEntity(model.Name, model.Description, model.Price, model.Height, model.Width, model.Length, model.ImageUrl);
         }
 
         //Entity para DTO
-        public ProductGameAdminDTO ToProductGameAdminDTO(ProductGameEntity entity)
+        public static ProductGameAdminDTO ToProductGameAdminDTO(ProductGameEntity entity)
         {
             return new ProductGameAdminDTO
             {

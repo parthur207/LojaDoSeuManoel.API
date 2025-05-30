@@ -14,7 +14,7 @@ namespace LojaDoSeuManoel.Application.Mappers
 
         //Model para entity
 
-        public OrderEntity ToOrderEntity(CreateOrderModel model, int CustomerId)
+        public static OrderEntity ToOrderEntity(CreateOrderModel model, int CustomerId)
         {
             return new OrderEntity
             (
@@ -29,7 +29,7 @@ namespace LojaDoSeuManoel.Application.Mappers
 
         //Entity para DTO
 
-        public OrderGenericDTO ToOrderGenericDTO(OrderEntity entity)
+        public static OrderGenericDTO ToOrderGenericDTO(OrderEntity entity)
         {
             return new OrderGenericDTO 
             {
