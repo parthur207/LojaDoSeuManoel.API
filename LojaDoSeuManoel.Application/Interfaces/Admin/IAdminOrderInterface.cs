@@ -17,7 +17,7 @@ namespace LojaDoSeuManoel.Application.Interfaces.Admin
 
         Task<ResponseModel<List<OrderGenericDTO>?>> GetOrderByCustomerAdmin(string Email);
 
-        Task<ResponseModel<List<OrderGenericDTO>?>> GetOrderByIdAdmin(int OrderId);
+        Task<ResponseModel<OrderGenericDTO>?> GetOrderByIdAdmin(int OrderId);
 
 
         //Commands

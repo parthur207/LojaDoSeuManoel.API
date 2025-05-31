@@ -24,7 +24,7 @@ namespace LojaDoSeuManoel.Application.Services.Costumer
 
             ResponseModel<List<OrderGenericDTO>?> response = new ResponseModel<List<OrderGenericDTO>?>();
 
-            var orders = await _orderRepository.GetOrderByIdAsync(CustomerId);
+            var orders = await _orderRepository.GetAllOrdersCustomerAsync(CustomerId);
 
             if (orders.Content is null || !orders.Content.Any())
             {

@@ -51,7 +51,10 @@ namespace LojaDoSeuManoel.Application.Services.Admin
         public async Task<ResponseModel<List<ProductGameAdminDTO>?>> GetAllProductGameAdmin()
         {
             
-            ResponseModel<List<ProductGameAdminDTO>?> response = new ResponseModel<List<ProductGameAdminDTO>?>();
+            ResponseModel<List<ProductGameAdminDTO>?> response = new ResponseModel<List<ProductGameAdminDTO>?>
+            {
+                Content = new List<ProductGameAdminDTO>()
+            };
 
             var products = await _adminProductGameRespository.GetAllProductGameAsync();
 

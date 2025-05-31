@@ -48,6 +48,34 @@ namespace LojaDoSeuManoel.Infrastructure.Repositories
             }
         }
 
+        public async Task<ResponseModel<List<OrderEntity>?>> GetAllOrdersCustomerAsync(int customerId)
+        {
+            ResponseModel<List<OrderEntity>?> response = new ResponseModel<List<OrderEntity>?>();
+
+            try
+            {
+                var orders = await _dbContext.Order.Where(x=>x.CustomerId== customerId).ToListAsync();
+
+                if (orders is null || !orders.Any())
+                {
+                    response.Status = false;
+                    response.Message = "Nenhum pedido encontrado.";
+                    return response;
+                }
+
+                response.Content = orders;
+                response.Status = true;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Ocorreu um erro inesperado: {ex.Message}";
+                return response;
+            }
+        }
+
+
         public async Task<ResponseModel<List<OrderEntity>?>> GetOrderByCustomerAsync(string Email)
         {
             ResponseModel<List<OrderEntity>?> response = new ResponseModel<List<OrderEntity>?>();
@@ -76,16 +104,14 @@ namespace LojaDoSeuManoel.Infrastructure.Repositories
             }
         }
 
-        public async Task<ResponseModel<List<OrderEntity>?>> GetOrderByIdAsync(int OrderId)
+        public async Task<ResponseModel<OrderEntity?>> GetOrderByOrderIdAsync(int OrderId)
         {
-            ResponseModel<List<OrderEntity>?> response = new ResponseModel<List<OrderEntity>?>();
+            ResponseModel<OrderEntity?> response = new ResponseModel<OrderEntity?>();
             try
             {
-                var orders = await _dbContext.Order
-                    .Where(x => x.Id == OrderId)
-                    .ToListAsync();
+                var orders = await _dbContext.Order.FirstOrDefaultAsync(x => x.Id == OrderId);
 
-                if (orders is null || !orders.Any())
+                if (orders is null )
                 {
                     response.Status = false;
                     response.Message = "Pedido não encontrado.";
@@ -103,6 +129,7 @@ namespace LojaDoSeuManoel.Infrastructure.Repositories
                 return response;
             }
         }
+
 
         public async Task<SimpleResponseModel> CreateOrderAsync(OrderEntity Entity)
         {

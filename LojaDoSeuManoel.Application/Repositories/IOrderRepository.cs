@@ -9,7 +9,8 @@ namespace LojaDoSeuManoel.Application.Repositories
         //Querys
         Task<ResponseModel<List<OrderEntity>?>> GetAllOrdersAsync();
         Task<ResponseModel<List<OrderEntity>?>> GetOrderByCustomerAsync(string Email);
-        Task<ResponseModel<List<OrderEntity>?>> GetOrderByIdAsync(int OrderId);
+        Task<ResponseModel<OrderEntity>?> GetOrderByOrderIdAsync(int OrderId);
+        Task<ResponseModel<List<OrderEntity>?>> GetAllOrdersCustomerAsync(int CustomerID);
 
         //Commands
         Task<SimpleResponseModel> CreateOrderAsync(OrderEntity Entity);

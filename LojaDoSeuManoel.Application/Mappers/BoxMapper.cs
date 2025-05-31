@@ -22,7 +22,6 @@ namespace LojaDoSeuManoel.Application.Mappers
                 Volume = entity.Volume,
                 CreatedAt= entity.CreatedAt 
             };
-            
         }
     }
 }

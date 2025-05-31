@@ -19,7 +19,7 @@ namespace LojaDoSeuManoel.API.Controllers.Customer
         }
 
         [HttpGet("allOrders")]
-        public async Task<IActionResult> GetAllOrders()
+        public async Task<IActionResult> CustomerGetAllOrders()
         {
 
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
@@ -32,7 +32,6 @@ namespace LojaDoSeuManoel.API.Controllers.Customer
             }
 
             return Ok(response);
-            
         }
     }
 }

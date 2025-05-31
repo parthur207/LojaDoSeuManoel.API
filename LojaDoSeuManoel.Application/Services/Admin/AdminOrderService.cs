@@ -73,9 +73,9 @@ namespace LojaDoSeuManoel.Application.Services.Admin
             return response;
         }
 
-        public async Task<ResponseModel<List<OrderGenericDTO>?>> GetOrderByIdAdmin(int OrderId)
+        public async Task<ResponseModel<OrderGenericDTO>?> GetOrderByIdAdmin(int OrderId)
         {
-            ResponseModel<List<OrderGenericDTO>?> response = new ResponseModel<List<OrderGenericDTO>?>();
+            ResponseModel<OrderGenericDTO>? response = new ResponseModel<OrderGenericDTO?>();
 
             if (OrderId <= 0)
             {
@@ -84,21 +84,18 @@ namespace LojaDoSeuManoel.Application.Services.Admin
                 return response;
             }
 
-            var orders = await _orderRepository.GetOrderByIdAsync(OrderId);
+            var order = await _orderRepository.GetOrderByOrderIdAsync(OrderId);
 
-            if (orders.Content is null || !orders.Content.Any())
+            if (order.Content is null )
             {
                 response.Message = "Sem resultados para pedidos com o ID informado.";
                 response.Status = false;
                 return response;
             }
 
-            foreach (var order in orders.Content)
-            {
-                var OrderMapped = OrderMapper.ToOrderGenericDTO(order);
-                response.Content.Add(OrderMapped);
-            }
+            var OrderMapped = OrderMapper.ToOrderGenericDTO(order.Content);
 
+            response.Content = OrderMapped;
             response.Status = true;
             return response;
         }

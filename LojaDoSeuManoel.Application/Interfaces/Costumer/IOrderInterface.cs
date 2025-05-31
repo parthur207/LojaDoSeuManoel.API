@@ -8,7 +8,6 @@ namespace LojaDoSeuManoel.Application.Interfaces.Costumer
         //Querys
         Task<ResponseModel<List<OrderGenericDTO>?>> GetAllOrders(int CustomerId);
 
-
         Task<SimpleResponseModel> UpdateOrderToCancelled(int OrderId);
     }
 }

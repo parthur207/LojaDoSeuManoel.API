@@ -56,9 +56,6 @@ namespace LojaDoSeuManoel.Infrastructure.Persistense
                 .HasForeignKey(x=>x.ProductGameId)
                 .OnDelete(DeleteBehavior.Restrict);
             });
-
-
         }
-
     }
 }
