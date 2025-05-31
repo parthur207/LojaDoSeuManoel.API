@@ -19,7 +19,6 @@ namespace LojaDoSeuManoel.API.Controllers.Admin
         }
 
         //Querys
-
         [HttpGet("allBox")]
         public async Task<IActionResult> GetAllBoxes()
         {
@@ -32,6 +31,7 @@ namespace LojaDoSeuManoel.API.Controllers.Admin
 
             return Ok(response);
         }
+
         [HttpGet("box")]
         public async Task<IActionResult> GetBoxByType([FromQuery] BoxTypeEnum type)
         {

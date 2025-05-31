@@ -16,25 +16,33 @@ namespace LojaDoSeuManoel.Application.Services.Admin
             _boxRepository = boxRepository;
         }
 
-        public async Task<ResponseModel<BoxAdminDTO>?> GetBoxByTypeAdmin(BoxTypeEnum Type)
+        public async Task<ResponseModel<BoxAdminDTO>> GetBoxByTypeAdmin(BoxTypeEnum type)
         {
-            ResponseModel<BoxAdminDTO>? response = new ResponseModel<BoxAdminDTO>();
+            var response = new ResponseModel<BoxAdminDTO>();
 
-            if(!Enum.IsDefined(typeof(BoxTypeEnum), Type))
+            if (!Enum.IsDefined(typeof(BoxTypeEnum), type))
             {
                 response.Status = false;
                 response.Message = "Tipo de caixa inválido.";
                 return response;
             }
 
-            var boxResponse = await _boxRepository.GetBoxByTypeAdminAsync(Type);
+            var boxResponse = await _boxRepository.GetBoxByTypeAdminAsync(type);
 
-            var BoxDTO= BoxMapper.ToBoxDTO(boxResponse.Content);
+            if (boxResponse == null || !boxResponse.Status || boxResponse.Content == null)
+            {
+                response.Status = false;
+                response.Message = boxResponse?.Message ?? "Erro ao buscar a caixa.";
+                return response;
+            }
+
+            var boxDTO = BoxMapper.ToBoxDTO(boxResponse.Content);
 
             response.Status = true;
-            response.Content = BoxDTO;
+            response.Content = boxDTO;
             return response;
         }
+
 
         public async Task<ResponseModel<List<BoxAdminDTO>?>> GetAllBoxesAdmin()
         {

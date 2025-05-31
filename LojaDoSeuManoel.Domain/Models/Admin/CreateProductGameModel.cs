@@ -39,7 +39,5 @@ public class CreateProductGameModel
     [EnumDataType(typeof(ProductGameCategoryEnum), ErrorMessage = "Categoria inválida.")]
     public ProductGameCategoryEnum Category { get; set; }
 
-
-    [Url(ErrorMessage = "A URL da imagem deve ser válida.")]
     public string? ImageUrl { get; set; }
 }

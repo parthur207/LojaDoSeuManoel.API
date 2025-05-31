@@ -9,6 +9,11 @@ namespace LojaDoSeuManoel.Domain.Entities
 {
     public class OrderEntity : BaseEntity
     {
+
+        public OrderEntity()
+        {
+            OrderList = new List<OrderProductGameEntity>();
+        }
         public OrderEntity(int customerId, List<OrderProductGameEntity> orderList)
         {
             CustomerId = customerId;

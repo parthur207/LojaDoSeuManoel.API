@@ -11,10 +11,10 @@ namespace LojaDoSeuManoel.API.Controllers.Admin
     [Route("api/Customer/productgame")]
     [ApiController]
     [Authorize(Roles = RolesTypes.Admin)]
-    public class ProductGameController : ControllerBase
+    public class AdminProductGameController : ControllerBase
     {
         private readonly IAdminProductGameInterface _adminProductGameService;
-        public ProductGameController(IAdminProductGameInterface adminProductGameService)
+        public AdminProductGameController(IAdminProductGameInterface adminProductGameService)
         {
             _adminProductGameService = adminProductGameService;
         }
@@ -215,8 +215,8 @@ namespace LojaDoSeuManoel.API.Controllers.Admin
             return Ok(response);
         }
 
-        [HttpPut()]
-        public async Task<IActionResult> DeleteProductGame([FromQuery] int ProductGameId)
+        [HttpDelete("delete/{ProductGameId}")]
+        public async Task<IActionResult> DeleteProductGame([FromRoute] int ProductGameId)
         {
             if (ProductGameId <=0)
             {

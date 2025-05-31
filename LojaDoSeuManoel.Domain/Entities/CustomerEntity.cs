@@ -10,6 +10,12 @@ namespace LojaDoSeuManoel.Domain.Entities
 {
     public class CustomerEntity : BaseEntity
     {
+
+        public CustomerEntity() //construtor vazio para o mapper
+        {
+            OrderList = new List<OrderEntity>();
+            Role = RolesTypes.Customer;
+        }
         public CustomerEntity(string email, string password)//para validação de login
         {
             Email = email;
