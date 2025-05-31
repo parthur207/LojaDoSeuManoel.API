@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LojaDoSeuManoel.Application\LojaDoSeuManoel.Application.csproj" />
-    <ProjectReference Include="..\LojaDoSeuManoel.Domain\LojaDoSeuManoel.Domain.csproj" />
+    <ProjectReference Include="..\LojaDoSeuManoel.Application\LojaDeGames.Application.csproj" />
+    <ProjectReference Include="..\LojaDoSeuManoel.Domain\LojaDeGames.Domain.csproj" />
   </ItemGroup>
 
 </Project>
